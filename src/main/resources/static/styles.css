@@ -300,3 +300,7 @@ margin-right: 8px;
 .main {
 	margin-top: 200px
 }
+.welcomeDescription{
+	width: 80%;
+	margin: 0 auto;
+}

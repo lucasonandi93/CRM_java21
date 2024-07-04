@@ -15,9 +15,9 @@ VALUES  ('Pascal', 'KERWAN', 'p.kerwan@cryorbiter', '$2a$12$0ApZW/n/gtSYQFvFT.rJ
         ('Léon', 'CARPENTIER', 'l.carpentier@cryorbiter.com', '$2a$12$zPQQMgNmBFl/jN.9cKmczeFiPlleESb6PGUocSqecSCfXWMQ5Tl52', 'GESTIONNAIRE_DES_VENTES', TRUE),
         ('Gérard', 'PAUL', 'g.paul@cryorbiter.com', '$2a$12$FtFvmTvqMZS8yh2dPMuIyewKBVS0yAMYEEdaMNo88pQBAKcwkNmzm', 'GESTIONNAIRE_DES_VENTES', TRUE),
         ('Cédric', 'POULAIN', 'c.poulain@cryorbiter.com', '$2a$12$tPzrJj0NKvQz9FNcc1sKAOLyPoU46NFKK6Fi8PME8Cqcw/8MaCDZ.', 'SERVICE_CLIENT', TRUE),
-        ('toto', 'TEST', 'resp@cryo', '$2a$12$h0fTzzH/67.xgUBy7lsOO.JSIXoIaBxi/4oMRz.n0ATii8aIobaa2', 'RESPONSABLE', TRUE),
-        ('titi', 'TEST', 'serv@cryo', '$2a$12$h0fTzzH/67.xgUBy7lsOO.JSIXoIaBxi/4oMRz.n0ATii8aIobaa2', 'SERVICE_CLIENT', TRUE),
-        ('tata', 'TEST', 'gest@cryo', '$2a$12$h0fTzzH/67.xgUBy7lsOO.JSIXoIaBxi/4oMRz.n0ATii8aIobaa2', 'GESTIONNAIRE_DES_VENTES', TRUE)
+        ('toto', 'TEST', 'resp@test', '$2a$12$h0fTzzH/67.xgUBy7lsOO.JSIXoIaBxi/4oMRz.n0ATii8aIobaa2', 'RESPONSABLE', TRUE),
+        ('titi', 'TEST', 'serv@test', '$2a$12$h0fTzzH/67.xgUBy7lsOO.JSIXoIaBxi/4oMRz.n0ATii8aIobaa2', 'SERVICE_CLIENT', TRUE),
+        ('tata', 'TEST', 'gest@test', '$2a$12$h0fTzzH/67.xgUBy7lsOO.JSIXoIaBxi/4oMRz.n0ATii8aIobaa2', 'GESTIONNAIRE_DES_VENTES', TRUE)
 ;
 INSERT INTO filrouge.user_action (user_id, method, action_realisee, created_at)
 VALUES 

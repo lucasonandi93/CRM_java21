@@ -13,6 +13,10 @@ public class MainController {
     public String welcome() {
         return "redirect:/listecustomers";
     }
+    @GetMapping("/welcome")
+    public String welcome1() {
+        return "welcome";
+    }
 
     @GetMapping("/errorPage")
     public String error(Model model) {

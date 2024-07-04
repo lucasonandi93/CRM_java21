@@ -68,7 +68,7 @@ public class SecurityConfig {
 					    //.hasAuthority("....")
 					    //.hasAnyAuthority("....", "...")
 					
-					.requestMatchers("/login", "/styles.css", "/assets/image/logo.png", "/unauthorized").permitAll()
+					.requestMatchers("/welcome","/login", "/styles.css", "/assets/image/logo.png", "/unauthorized").permitAll()
 					
 					// OBLIGATOIRE
 					.anyRequest()
