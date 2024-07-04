@@ -1,0 +1,302 @@
+/* Styles pour la barre de navigation */
+html, body {
+	margin: 0;
+	padding: 0;
+	background-color: #ebebeb;
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	font-size: 1rem;
+}
+
+nav {
+	background-color: #fff;
+	overflow: hidden;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+	border-bottom: 1px solid #191c1f;
+	margin-bottom: 20px;
+}
+
+.navbar-logout img {
+	max-height: 30px;
+}
+
+.navbar-logo img {
+	max-height: 60px;
+}
+
+.navbar-links a {
+	color: #191c1f;
+	padding: 14px 50px;
+	text-decoration: none;
+}
+
+.navbar-links a.active {
+	background-color: #004aad;
+	color: white; 
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.navbar-logout button {
+	background: none;
+	border: none;
+	padding: 0 20px;
+	cursor: pointer;
+}
+
+.navbar-logout button:hover {
+	background-color: #004aad;
+}
+
+
+.table-container{
+	margin-left: auto;
+	margin-right: auto;
+	width:80%;
+}
+main{
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+.usersTab {
+	margin: 0 auto;
+}
+
+th, td {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+
+th {
+	background-color: #f2f2f2;
+	color: #004AAD;
+	text-align: center;
+}
+
+td {
+	color: #000000;
+}
+button {
+	background-color: #23282E;
+	color: white;
+	padding: 0.5rem 2.5rem;
+	border-radius: 5px;
+	border:none;
+}
+
+.buttons {
+	display: flex;
+	gap: 30px;
+	justify-content: center;
+	padding-top: 20px;
+}
+
+#valid {
+	background-color: #23282e;
+	color: white;
+	border: solid 1px #23282e;
+}
+
+#reset {
+	background-color: #e9e2e2;
+	color: #191c1f;
+	border: solid 1px #e9e2e2;
+}
+#delete {
+	background-color:#B81414;
+	color: white;
+}
+
+
+/* Ensure high contrast for readability */
+button:focus, button:hover {
+	outline: none;
+	box-shadow: 0 0 3px 2px rgba(0, 0, 255, 0.5);
+}
+
+caption {
+	text-align: center;
+	padding: 20px;
+	color: #004aad;
+	font-weight: 500;
+}
+.infoCustomer {
+	margin-top: 100px;
+}
+
+.form-title {
+	text-align: center;
+	padding: 20px;
+	color: #004aad;
+	margin-top: 50px;
+}
+
+.form-group {
+	margin-bottom: 1rem;
+	display: flex;
+	width: 500px;
+	align-items: center;
+}
+
+.form-label {
+	color: #004aad;
+	font-size: 1rem;
+	display: block;
+	margin-bottom: 0.5rem;
+	width: 50%;
+}
+
+input, select, textarea {
+	width: 100%;
+	padding: 12px;
+	margin-top: 0.5rem;
+	border-radius: 5px;
+	border: solid 1px #191c1f;
+}
+
+.required {
+	color: #b81414;
+}
+
+.checkbox {
+	margin-right: 250px
+}
+
+
+#title {
+	color: #004aad;
+	padding: 10px;
+	font-weight: 500;
+}
+.userform {
+	padding-bottom: 40px;
+}
+.infoUser {
+	margin-top: 100px;
+}
+
+/*style pour warning.html*/
+
+.warning-title {
+	text-align: center;
+	padding: 20px;
+	color: #b81414;
+}
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/*style pour home.html*/
+.container {
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
+	padding-top: 50px;
+}
+
+#cryologo {
+	border-radius: 50%;
+	width: 300px;
+}
+h1 {
+color: #004aad;	
+text-align: center;
+}
+.home-title {
+	color: #004aad;
+}
+
+/*style pour listecustomer*/
+
+.research {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.form {
+	display:flex;
+	align-items: baseline;
+	gap: 30px; 
+	padding-bottom: 30px;
+	font-size: 14px
+}
+.filtre {
+	margin-left: 30px;
+	color: #004aad;
+	font-weight: 300;
+}
+.customer-container{
+	margin-left: auto;
+	margin-right: auto;
+	width:80%;
+}
+.action {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
+a {
+	color: #004aad;
+	margin-left: 15px;
+}
+a:hover{
+color: #191c1f;	
+}
+
+/*style pour createcustomer*/
+.formContainer {
+	display:grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 20px;
+}
+
+/*style pour createEstimate*/
+.form-container{
+	display:flex;
+	justify-content: center;
+	margin-top: 60px;
+}
+
+#label {
+margin-right: 8px;	
+}
+
+/*style pour viewEstimate*/
+
+#list-infos{
+	display:grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+
+    #list-infos dt {
+        font-weight: bold;
+        width: 150px; 
+        color: #004aad;
+    }
+
+    
+    #list-infos dt + dd {
+        margin-left: 0; 
+    }
+
+.main {
+	margin-top: 200px
+}

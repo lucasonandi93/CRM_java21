@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+    <title>Liste des clients</title>
+</head>
+<body>
+	<div th:replace="~{/inc/menu.html}">MENU</div>
+	<span>
+        <a th:href="@{/createCustomer}"><button aria-label="bouton ajouter un client" type="button">+ Ajouter un client</button></a>
+    </span>
+   
+	<h1>Liste des clients</h1>
+	
+	<div class="research">
+	<h3 class="filtre">Filtrer la liste</h3>
+    <form action="#" th:action="@{/listecustomers}" method="get">
+	<div class= "form">
+        <label for="status">Statut</label>
+        <select name="status" id="status">
+            <option value="" th:selected="${status == null}">Tous</option>
+            <option th:each="s : ${customerStatus}"
+                    th:value="${s}"
+                    th:text="${s.name()}"
+                    th:selected="${status == s}"></option>
+        </select>
+        <label for="company">Enterprise</label>
+        <input type="text" id="company" name="company" th:value="${company}"/>
+        <button type="submit">Filtrer</button>
+        <a th:href="@{/listecustomers}"><button type="button">Réinitialiser</button></a> 
+        </div>
+    </form>
+    </div>
+<div class="customer-container">
+<table aria-label="Tableau des clients">
+    <thead>
+    <tr>
+        <th scope="col">Entreprise</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prénom</th>
+        <th scope="col">Téléphone</th>
+        <th scope="col">Statut</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer : ${customersList}">
+        <td th:text="${customer.company}">company</td>
+        <td th:text="${customer.lastname}">lastname</td>
+        <td th:text="${customer.firstname}">firstname</td>
+        <td th:text="${customer.mobilePhone}">mobilePhone</td>
+       <td th:text="${customer.customerStatus}">customerStatus</td>
+        <td class="action"><a th:href="@{/customerDetails/{customerId}(customerId=${customer.id})}"><button th:aria-label="${'Voir les détails du client' + customer.lastname + ' ' + customer.firstname + ' de l entreprise ' + customer.company }" id="reset">Voir</button></a>
+            <a class="submitButton" th:href="@{/updateCustomer(customerId=${customer.id})}" th:aria-label="${'Modifier les détails du client' + customer.lastname + ' ' + customer.firstname + ' de l entreprise ' + customer.company } "><button aria-label="bouton de modification" type="button" id="submit">Modifier</button></a>
+            <form th:action="@{/deleteCustomer}" method="POST">
+            <input type="hidden" th:value="${customer.id}" name="customerId">
+<!--             <a th:href="@{/deleteCustomer(customerId=${customer.id})}" th:aria-label="${'Supprimer le client' + customer.lastname + ' ' + customer.firstname + ' de l entreprise ' + customer.company } "></a>
+ -->            <button id="delete" type="submit">Supprimer</button> 
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>
+
+</html>

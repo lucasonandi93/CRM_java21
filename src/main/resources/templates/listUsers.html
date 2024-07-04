@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+	rel="stylesheet" />
+<link rel="stylesheet" href="styles.css">
+<title>Liste des Utilisateurs</title>
+</head>
+<body>
+	<div th:replace="~{/inc/menu.html}">MENU</div>
+	<span> <a th:href="@{/createUser}"><button
+				aria-label="bouton ajouter un utilisateur" type="button">+
+				Ajouter un utilisateur</button></a>
+	</span>
+	<h1>Liste des utilisateurs</h1>
+	<div class="research">
+		<h3 class="filtre">Filtrer la liste</h3>
+		<form th:action="@{/listUsers}" method="get">
+			<div class="form">
+				<label for="grant">Role</label> <select name="grant" id="grant">
+					<option value="" th:selected="${grant == null}">Tous</option>
+					<option th:each="s : ${userGrant}" th:value="${s}" th:text="${s}"
+						th:selected="${s == grant}"></option>
+				</select> <label for="nom">Nom</label> <input type="text" id="nom" name="nom"
+					th:value="${nom}" />
+
+				<button type="submit">Filtrer</button>
+				<a th:href="@{/listUsers}"><button type="button">Réinitialiser</button></a>
+			</div>
+		</form>
+	</div>
+	<div class="table-container">
+		<table aria-label="Tableau des utilisateurs">
+			<thead>
+				<tr>
+					<th>Prénom</th>
+					<th>Nom</th>
+					<th>Email</th>
+					<th>Grant</th>
+					<th>Actif</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${usersList}">
+					<td th:text="${user.firstname}">Prénom</td>
+					<td th:text="${user.lastname}">Nom</td>
+					<td th:text="${user.email}">Email</td>
+					<td th:text="${user.grantName}">Grant</td>
+					<td><input type="checkbox" th:checked="${user.active}"
+						disabled="disabled" /></td>
+					<td><a th:href="@{/userDetails/{userId}(userId=${user.id})}">
+							<button aria-label="bouton aperçu utilisateur" type="button"
+								id="reset">Voir</button>
+					</a> <a th:href="@{/updateUser?userId={userId}(userId=${user.id})}">
+							<button aria-label="bouton de modification" type="button">Modifier</button>
+					</a> <a th:href="@{/warning/{userId}(userId=${user.id})}">
+							<button aria-label="bouton désactiver" type="button" id="delete">Désactiver</button>
+					</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

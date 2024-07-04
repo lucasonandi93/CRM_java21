@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Accueil</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="assets/image/logo.png" alt="CRYO Logo" id="cryologo">
+        </div>
+        <h1>Bienvenue sur CRYO</h1>
+        <h2 class="home-title">Connexion</h2>
+        <form action="#" method="POST">
+            <label for="username">Email :</label>
+            <input type="email" id="username" name="username" value="" required autofocus>
+
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" value="" required>
+
+            <p class="admin-contact">En cas d'oubli de votre mot de passe, veuillez contacter l'administrateur : <a href="mailto:administrateur@cryo.com">administrateur@cryo.com</a></p>
+            
+            <div class="buttons">
+                <button type="submit" id="submit">Se connecter</button>
+                <button type="button" id="delete" >Quitter</button>
+            </div>
+        </form>
+    </div>  
+</body>
+</html>
+

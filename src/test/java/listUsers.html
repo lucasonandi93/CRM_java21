@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+	rel="stylesheet" />
+<link rel="stylesheet" href="styles.css">
+
+<title>Liste des Utilisateurs</title>
+</head>
+<body>
+	<nav role="navigation" aria-label="Menu principal">
+		<div class="navbar-logo">
+			<img src="./assets/image/logo.png" alt="Logo de l'entreprise" />
+		</div>
+		<div class="navbar-links">
+			<a href="#" aria-current="page">Accueil</a> 
+			<a href="#">Clients</a> 
+			<a href="#">Devis</a> 
+			<a href="#">Commandes</a>
+			<a class="active" href="listUsers">Utilisateurs</a> 
+			<a href="#">Mon Compte</a>
+		</div>
+		<div class="navbar-logout">
+			<button aria-label="Se déconnecter">
+				<img src="./assets/image/puissance.png" alt="Icône de déconnexion" />
+			</button>
+		</div>
+	</nav>
+	<main>
+		<h2 class="form-title">Liste des utilisateurs</h2>
+		<div class="table-container">
+		<table aria-label="Tableau des utilisateurs">
+				<thead>
+					<tr>
+						<th>Prénom</th>
+						<th>Nom</th>
+						<th>Email</th>
+						<th>Grant</th>
+						<th>Actif</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="user : ${users}">
+						<td th:text="${user.firstname}">Prénom</td>
+						<td th:text="${user.lastname}">Nom</td>
+						<td th:text="${user.email}">Email</td>
+						<td th:text="${user.grantName}">Grant</td>
+						<td><input type="checkbox" th:checked="${user.active}"
+							disabled="disabled" /></td>
+						<td>
+								<a th:href="@{/userDetails/{userId}(userId=${user.id})}">
+    							<button aria-label="bouton aperçu utilisateur" type="button">Voir</button></a>
+								<a href="updateUser"><button aria-label="bouton de modification" type="submit">Modifier</button></a>
+								<button aria-label="bouton desactiver" type="delete" id="delete">Désactiver</button>
+								
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	<span> <a th:href="@{/createUser}">Créer un nouvel
+			utilisateur</a>
+	</span>
+	</main>
+</body>
+</html>

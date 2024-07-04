@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+	rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="/styles.css" />
+<title>Formulaire Commande</title>
+</head>
+<body>
+	<div th:replace="~{/inc/menu.html}">MENU</div>
+	<main>
+		<h1 class="form-title" 
+			th:text="${#strings.equals(orderForm.id, null) ? 'Créer une nouvelle commande' : 'Modifier la commande C'+orderForm.id}">
+			Formulaire commande
+		</h1>
+	    <p th:unless="${#strings.equals(errorMessage,null)}" th:text="*{errorMessage}"></p>
+		<form method="POST" 
+			th:action="${#strings.equals(orderForm.id, null) ? '/createOrder' : '/updateOrder'}"
+			th:object="${orderForm}">
+			<div class="">
+			<div>
+				<input type="hidden" th:field="*{id}" />
+				
+				
+				<div class="form-group" th:if="${#strings.equals(orderForm.id, null)}">
+					<label for="estimatesId" id="label-estimatesId" class="form-label">Devis <span
+						class="required">*</span></label> 
+					<select id="estimatesId" th:field="*{estimatesId}"
+						aria-label="Devis" required aria-required="true">
+						<option value="" selected>Choisir un devis</option>
+						<option 
+							th:each="estimate : ${listEstimates}" 
+							th:value="${estimate.id}"
+							th:text="${'D'+estimate.id+' - '+estimate.estimateLabel+' - '+estimate.customers.lastname+' '+estimate.customers.firstname}"
+							th:data-averagedailyrate="${estimate.averageDailyRate}"
+							th:data-numberofdays="${estimate.numberOfDays}"
+							th:data-tva="${estimate.tva}"
+							></option>
+					</select>
+                <span th:if="${#fields.hasErrors('estimatesId')}" th:errors="*{estimatesId}" class="error">erreur</span>
+				</div>
+				
+				<div class="form-group" th:unless="${#strings.equals(orderForm.id, null)}">
+					<div class="form-label">Devis</div>
+					<div class="text-input">
+						<span th:text="*{'D'+estimate.id+' - '+estimate.estimateLabel}"></span>
+						<input type="hidden" id="estimatesId" name="estimatesId" th:value="*{estimate.id}" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="form-label">Taux Journalier Moyen </div>
+					<div class="text-input" id="averageDailyRate">
+						<span th:unless="${#strings.equals(orderForm.id, null)}" th:text="*{estimate.averageDailyRate+' €'}"></span>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="form-label">Nombre de jours</div>
+					<div class="text-input" id="numberOfDays">
+						<span th:unless="${#strings.equals(orderForm.id, null)}" th:text="*{estimate.numberOfDays}"></span>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="form-label">Total HT</div>
+					<div class="text-input" id="totalHT">
+						<span th:unless="${#strings.equals(orderForm.id, null)}" th:text="*{(estimate.averageDailyRate*estimate.numberOfDays)+' €'}"></span>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="form-label">TVA</div>
+					<div class="text-input" id="tva">
+						<span th:unless="${#strings.equals(orderForm.id, null)}" th:text="*{estimate.tva+' %'}"></span>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="form-label">Total TTC</div>
+					<div class="text-input" id="totalTTC">
+						<span th:unless="${#strings.equals(orderForm.id, null)}" th:text="*{(estimate.averageDailyRate*estimate.numberOfDays*(100+estimate.tva)/100)+' €'}"></span>
+					</div>
+				</div>
+				
+				
+				<div class="form-group">
+					<label for="orderLabel" id="label-orderLabel" class="form-label">Libellé <span class="required">*</span></label> 
+					<input type="text" id="orderLabel"
+						th:field="*{orderLabel}" maxlength="50" 
+						required aria-required="true" />
+                <span th:if="${#fields.hasErrors('orderLabel')}" th:errors="*{orderLabel}" class="error">erreur</span>
+				</div>
+				
+				<div class="form-group">
+					<label for="orderStatus" id="label-orderStatus" class="form-label">Statut de la commande <span
+						class="required">*</span></label> 
+					<select id="orderStatus" th:field="*{orderStatus}"
+						aria-label="Statut de la commande" required aria-required="true">
+						<option value="" selected>Choisir un statut</option>
+						<option th:each="status : ${listOrderStatus}" th:value="${status}"
+							th:text="${status.getDisplayName()}"></option>
+					</select>
+                <span th:if="${#fields.hasErrors('orderStatus')}" th:errors="*{orderStatus}" class="error">erreur</span>
+				</div>
+
+				<div class="form-group">
+					<label for="orderType" id="label-orderType" class="form-label">Type <span
+						class="required">*</span></label> 
+					<input type="text" id="orderType" maxlength="50" 
+						th:field="*{orderType}" required aria-required="true" />
+				</div>
+                <span th:if="${#fields.hasErrors('orderType')}" th:errors="*{orderType}" class="error">erreur</span>
+
+				<div class="form-group">
+					<label for="orderComment" id="label-orderComment" class="form-label">Commentaire</label>
+					<textarea id="orderComment" th:field="*{orderComment}"
+						rows="3" cols="20" aria-label="Commentaire">
+                    </textarea>
+                <span th:if="${#fields.hasErrors('orderComment')}" th:errors="*{orderComment}" class="error">erreur</span>
+				</div>
+				
+
+			</div>
+
+			<!-- Buttons -->
+			<div class="buttons">
+				<button type="submit" id="valid">Enregistrer</button>
+				<button type="reset" id="reset">Effacer le formulaire</button>
+				<a href="/listOrders" aria-label="lien de retour vers la liste d'utilisateurs">
+			<button aria-label="bouton de retour" type="button">Retour</button></a>
+			</div>
+			</div>
+		</form>
+	</main>
+<script type="text/javascript" src="/orderForm.js"></script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr"
+xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"/>
+    <link type="text/css" rel="stylesheet" href="/styles.css"/>
+    <title>Formulaire Client</title>
+  </head>
+  <body>
+  <div th:replace="~{/inc/menu.html}">MENU</div>
+  <main>
+    <h2 class="form-title">Créer un nouveau client</h2>
+    
+    <form action="#" method="POST"
+    th:action="@{/createCustomer}"
+	th:object="${customerForm}"
+    >
+    <div th:if="${#fields.hasAnyErrors()}">
+    <ul>
+        <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+    </ul>
+</div>
+      <div class="formContainer">
+          <div class="form-group">
+            <label for="nom" name="nom" id="label-nom" class="form-label"
+              >Nom<span class="required">*</span></label
+            >
+            <input
+              type="text"
+              id="lastname"
+              th:field="${customerForm.lastname}"
+              maxlength="100"
+              placeholder="Davos"
+              required
+              aria-required="true"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="prenom" name="prenom" id="label-prenom" class="form-label"
+              >Prénom<span class="required">*</span></label
+            >
+            <input
+              type="text"
+              id="firstname"
+              th:field="${customerForm.firstname}"
+              placeholder="Dimitri"
+              required
+              aria-required="true"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="entreprise" name="entreprise" id="label-entreprise" class="form-label"
+              >Entreprise<span class="required">*</span></label
+            >
+            <input
+              type="text"
+              id="company"
+              th:field="${customerForm.company}"
+              placeholder="Temma"
+              required
+              aria-required="true"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email" name="email" id="label-email" class="form-label"
+              >Adresse email<span class="required">*</span></label
+            >
+            <input
+              type="email"
+              id="email"
+              th:field="${customerForm.email}"
+              placeholder="d.davos@temma.fr"
+              required
+              aria-required="true"
+            />
+          </div>
+
+          <div class="form-group">
+            <label
+              for="telephone_fixe"
+              name="telephone_fixe"
+              id="label-telephone_fixe"
+              class="form-label"
+              >Téléphone fixe</label
+            >
+            <input
+              type="tel"
+              id="officePhone"
+              th:field="${customerForm.officePhone}"
+              value="01 99 15 32 76"
+            />
+          </div>
+
+          <div class="form-group">
+            <label
+              for="telephone_mobile"
+              name="telephone_mobile"
+              id="label-telephone_mobile"
+              class="form-label"
+              >Téléphone mobile</label
+            >
+            <input
+              type="tel"
+              id="mobilePhone"
+             th:field="${customerForm.mobilePhone}"
+              value="07 87 88 52 00"
+            />
+          </div>
+          <div class="form-group" >
+            <label for="etat" name="etat" id="etat" class="form-label"
+              >Indicateur de l’état</label>
+            <select id="etat" th:field="${customerForm.customerStatus}" aria-label="Indicateur de l’état">
+              <option value="" >Choisir un état</option>
+              <option th:each="status : ${customerStatus}" 
+              th:value="${status}"
+              th:text="${status}"
+              th:selected="${status} == ${customerForm.customerStatus}">
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="guarantee" name="guarantee" id="guarantee" class="form-label"
+              >Gérer la garantie</label
+            >
+            <select
+              id="garantie"
+              th:field="${customerForm.guarantee}"
+              aria-label="Gérer la garantie"
+            >
+            <option value="">Faites votre choix</option>
+              <option th:value="*{false}" >Pas de garantie </option>
+              <option th:value="*{true}" th:selected="${guarantee} == ${customerForm.guarantee}">Anti-Trash</option>
+            </select>
+          </div>
+
+          <div class="form-group" >  
+          <!-- <input type="hidden" th:field="${customerForm.userId}" /> -->
+            <label for="userId" name="userId" id="userId" class="form-label"
+              >Associer à un gestionnaire</label
+            >
+            
+            <select
+              id="userId" th:field="${customerForm.userId}" 
+              aria-label="Associer à un gestionnaire"
+              >
+             <option value="" >Choisir un gestionnaire</option>
+              <option 
+              th:each="user : ${users}" 
+              th:value="${user.id}" 
+              th:text="${user.firstname + user.lastname}"
+               th:selected="${user} == ${customerForm.users}">
+            </option>
+            
+            </select>
+          </div>
+           <div class="form-group">
+            <label for="commentaire" name="commentaire" id="label-commentaire" class="form-label"
+              >Commentaire</label>
+            <textarea
+              id="customerComment"
+             th:field="${customerForm.customerComment}"
+              rows="3"
+              cols="20"
+              aria-label="Commentaire">
+             </textarea>
+             </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="buttons">
+          <button type="submit" id="valid">Enregistrer</button>
+          <button type="reset" id="reset">Effacer le formulaire</button>
+          <a href="/listecustomers"aria-label="lien de retour vers la liste d'utilisateurs">
+					<button aria-label="bouton de retour" type="button">Retour</button></a>
+        </div>
+      </div>
+    </form>
+    </main>
+  </body>
+</html>

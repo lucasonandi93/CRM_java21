@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liste des commandes</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<div th:replace="~{/inc/menu.html}">MENU</div>
+	<a href="/createOrder"><button aria-label="créer une commande" type="button">+ Créer une commande</button></a>
+	<h1>Liste des commandes</h1>
+	<div class="research">
+	<h3 class="filtre">Filtrer la liste</h3>
+	<form action="#" th:action="@{/listOrders}" method="get">
+	<div class= "form">
+            <label for="status">Statut</label>
+            <select name="status" id="status">
+                <option value="" th:selected="${status == null}">Tous</option>
+                <option th:each="s : ${orderStatus}"
+                        th:value="${s}"
+                        th:text="${s.displayName}"
+                        th:selected="${status == s}"></option>
+            </select>
+
+            <label for="label">Libellé</label>
+            <input type="text" id="label" name="label" th:value="${label}"/>
+
+            <label for="reference">Référence</label>
+            <input type="text" id="reference" name="reference" th:value="${reference}"/>
+
+            <label for="customerName">Nom Client</label>
+            <input type="text" id="customerName" name="customerName" th:value="${customerName}"/>
+
+            <button type="submit">Filtrer</button>
+            <a th:href="@{/listOrders}"><button type="button">Réinitialiser</button></a>
+          </div>  
+        </form>
+	<table aria-label="Tableau des commandes">
+		<thead>
+			<tr>
+				<th scope="col">Référence</th>
+				<th scope="col">Libellé</th>
+				<th scope="col">Client</th>
+				<th scope="col">Date</th>
+				<th scope="col">Montant TTC</th>
+				<th scope="col">Statut</th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="orders : ${ordersList}">
+				<td th:text="${'C'+orders.id}">Référence</td>
+				<td th:text="${orders.orderLabel}">Libellé</td>
+				<td th:text="${orders.getCustomer().getFirstname()+' '+orders.getCustomer().getLastname()}">Client</td>
+				<td th:text="${orders.createdAt.toLocaleString()}">Date</td>
+				<td th:text="${((orders.getEstimate.getNumberOfDays*orders.estimate.averageDailyRate)*(100+orders.estimate.tva)/100)+' €'}">Montant</td>
+				<td th:text="${orders.orderStatus.getDisplayName()}">Statut</td>
+				<td class="action">
+					<a th:href="${'/showOrder?id='+orders.id}"><button aria-label="bouton d'aperçu" type="button" id="reset">Voir</button></a>
+					<a th:href="${'updateOrder?id='+orders.id}"><button aria-label="bouton de modification" type="button">Modifier</button></a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</body>
+</html>
+
+<!--xmlns:th="http://www.thymeleaf.org-->

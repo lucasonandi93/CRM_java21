@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr" 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+ 	id="menu"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Barre de Navigation</title>
+    <link rel="stylesheet" href="/menu.css" />
+  </head>
+  <body>
+    <nav role="navigation" aria-label="Menu principal">
+    <div class="navbar-logo">
+        <img src="/assets/image/logo.png" alt="Logo de l'entreprise" />
+    </div>
+
+    <div class="navbar-links">
+        <a sec:authorize="hasAuthority('SERVICE_CLIENT')" href="/listecustomers">Clients</a> 
+        <a sec:authorize="hasAuthority('GESTIONNAIRE_DES_VENTES')" href="/listEstimates">Devis</a> 
+        <a sec:authorize="hasAuthority('GESTIONNAIRE_DES_VENTES')" href="/listOrders">Commandes</a>
+        <a sec:authorize="hasAuthority('RESPONSABLE')" href="/listUsers">Utilisateurs</a> 
+        <a sec:authorize="hasAuthority('RESPONSABLE')" href="/listUserActions">Historique</a> 
+        <a href="monCompte">Mon Compte</a>
+    </div>
+    <div class="navbar-logout">
+    	<a href="/logout">
+        <button aria-label="Se déconnecter">
+            <img src="/assets/image/puissance.png" alt="Icône de déconnexion" />
+        </button>
+        </a>
+    </div>
+</nav>
+  </body>
+</html>
