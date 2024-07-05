@@ -304,3 +304,14 @@ margin-right: 8px;
 	width: 80%;
 	margin: 0 auto;
 }
+
+.error{
+	color:red;
+}
+.success{
+	color:green;
+}
+
+.descriptionConnexion{
+	width: 80%;
+}

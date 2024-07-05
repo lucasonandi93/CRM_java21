@@ -5,6 +5,7 @@ import company.cryo.crm.model.Users;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,10 +34,12 @@ public class CustomerForm {
 	@Size(min=1, max = 50)
     private String company;
 
-	@Size(min=1, max = 20)
+	@Size(min=0, max = 20)
+	@Pattern(regexp = "\\d+", message = "Le numéro de téléphone du bureau doit contenir uniquement des chiffres.")
     private String officePhone;
 
-	@Size(min=1, max = 20)
+	@Size(min=0, max = 20)
+    @Pattern(regexp = "\\d+", message = "Le numéro de téléphone mobile doit contenir uniquement des chiffres.")
     private String mobilePhone;
 	@NotNull
     @Enumerated(EnumType.STRING)
@@ -47,7 +50,7 @@ public class CustomerForm {
     private String customerComment;
 
     private Users users; 
-    
+    @NotNull
     private Integer userId;
     
 }

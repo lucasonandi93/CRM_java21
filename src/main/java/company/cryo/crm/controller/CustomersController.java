@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import company.cryo.crm.dto.CustomersDto;
 import company.cryo.crm.form.CustomerForm;
@@ -187,11 +190,11 @@ public class CustomersController {
             @ModelAttribute("customerForm") @Validated CustomerForm customerForm,
             BindingResult bindingResult, Model model) {
 
-        List<String> changes = new ArrayList<>();
-        CustomersDto customerDto = customersService.findCustomerById(customerId);
-        
         if (!bindingResult.hasErrors()) {
-            // Perform comparison directly with form fields
+            List<String> changes = new ArrayList<>();
+            CustomersDto customerDto = customersService.findCustomerById(customerId);
+            
+            // Perform comparison and log changes if necessary
             if (!Objects.equals(customerDto.getFirstname(), customerForm.getFirstname())) {
                 changes.add("Firstname: " + customerDto.getFirstname() + " -> " + customerForm.getFirstname());
             }
@@ -232,32 +235,47 @@ public class CustomersController {
             customerDto.setUsers(customerForm.getUsers());
 
             customersService.create(customerDto);
-            String changesMessage = "Update de Customer " + customerDto.getId() + String.join(", ", changes);
-            userActionService.logUserAction("Client", changesMessage);
-
+            if (!changes.isEmpty()) {
+                String changesMessage = "Update de Customer " + customerDto.getId() + " " + String.join(", ", changes);
+                userActionService.logUserAction("Client", changesMessage);
+            }
             model.addAttribute("message", "Customer updated successfully.");
             return "redirect:/listecustomers";
         } else {
-            model.addAttribute("customers", customersService.showListeCustomers());
-            return "updateCustomer";
+        	 model.addAttribute("customerForm", customerForm);
+             
+             List<CustomerStatus> customerStatus = new ArrayList<>();
+             for (CustomerStatus status : CustomerStatus.values()) {
+                 customerStatus.add(status);
+             }
+             model.addAttribute("customerStatus", customerStatus);
+             
+             List<Users> users = userRepository.findAll();
+             model.addAttribute("users", users);
+             
+             return "updateCustomer";
         }
     }
     
     @PreAuthorize("hasAuthority('SERVICE_CLIENT')")
     @PostMapping("deleteCustomer")
-    public String deleteCustomer(@RequestParam("customerId") Integer customerId, Model model) {
-    	if (null == customerId) {
-    		return "redirect:/listecustomers";
-    	}
+    public String deleteCustomer(@RequestParam("customerId") Integer customerId, RedirectAttributes redirectAttributes) {
+        if (customerId == null) {
+            redirectAttributes.addFlashAttribute("message", "Customer ID cannot be null.");
+        } else {
+            try {
+                customersService.deleteCustomerById(customerId);
+                userActionService.logUserAction("Client", "Suppression Customer N°" + customerId);
+                redirectAttributes.addFlashAttribute("successMessage", "Client supprimé avec succès.");
+            } catch (DataIntegrityViolationException e) {
+                redirectAttributes.addFlashAttribute("errorMessage", "Impossible de supprimer le client N°" + customerId + " car il est associé à des enregistrements existants dans le système.");
+            } catch (Exception e) {
+                redirectAttributes.addFlashAttribute("message", "Error deleting Customer N°" + customerId + ": " + e.getMessage());
+            }
+            
+        }
 
-    	try {
-    		customersService.deleteCustomerById(customerId);
-    		model.addAttribute("message", "Customer deleted successfully.");
-		} catch (Exception e) {
-			model.addAttribute("message", "Error deleting Customer N°" + customerId + ": " + e.getMessage());
-			}
-    	userActionService.logUserAction("Client", "Suppression Customer N°" + customerId);
-    	return "redirect:/listecustomers";
+        return "redirect:/listecustomers";
 
     }
 

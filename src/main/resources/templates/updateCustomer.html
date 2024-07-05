@@ -16,97 +16,101 @@
 		th:object="${customerForm}">
 		<input type="hidden" th:field="*{customerId}" />
 <main>
-		<div class="formContainer">
-			<div class="form-group">
-				<label for="nom" id="label-nom" class="form-label">Nom<span
-					class="required">*</span></label> <input type="text" id="lastname"
-					th:field="${customerForm.lastname}" maxlength="100"
-					placeholder="Davos" required aria-required="true" />
-			</div>
+		 <div class="formContainer">
+                <div>
+                    <div class="form-group">
+                        <label for="nom" id="label-nom" class="form-label">Nom<span class="required">*</span></label>
+                        <input type="text" id="lastname" th:field="*{lastname}" maxlength="100" placeholder="Davos" required aria-required="true" />
+                    </div>
+                    <div th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="error"></div>
+                </div>
 
-			<div class="form-group">
-				<label for="prenom" id="label-prenom" class="form-label">Prénom<span
-					class="required">*</span></label> <input type="text" id="firstname"
-					th:field="${customerForm.firstname}" placeholder="Dimitri" required
-					aria-required="true" />
-			</div>
+                <div>
+                    <div class="form-group">
+                        <label for="prenom" id="label-prenom" class="form-label">Prénom<span class="required">*</span></label>
+                        <input type="text" id="firstname" th:field="*{firstname}" placeholder="Dimitri" required aria-required="true" />
+                    </div>
+                    <div th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class="error"></div>
+                </div>
 
-			<div class="form-group">
-				<label for="entreprise" id="label-entreprise" class="form-label">Entreprise<span
-					class="required">*</span></label> <input type="text" id="company"
-					th:field="${customerForm.company}" placeholder="Temma" required
-					aria-required="true" />
-			</div>
+                <div>
+                    <div class="form-group">
+                        <label for="entreprise" id="label-entreprise" class="form-label">Entreprise<span class="required">*</span></label>
+                        <input type="text" id="company" th:field="*{company}" placeholder="Temma" required aria-required="true" />
+                    </div>
+                    <div th:if="${#fields.hasErrors('company')}" th:errors="*{company}" class="error"></div>
+                </div>
 
-			<div class="form-group">
-				<label for="email" id="label-email" class="form-label">Adresse
-					email<span class="required">*</span>
-				</label> <input type="email" id="email" th:field="${customerForm.email}"
-					placeholder="d.davos@temma.fr" required aria-required="true" />
-			</div>
+                <div>
+                    <div class="form-group">
+                        <label for="email" id="label-email" class="form-label">Adresse email<span class="required">*</span></label>
+                        <input type="email" id="email" th:field="*{email}" placeholder="d.davos@temma.fr" required aria-required="true" />
+                    </div>
+                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
+                </div>
 
-			<div class="form-group">
-				<label for="telephone_fixe" id="label-telephone_fixe"
-					class="form-label">Téléphone fixe</label> <input
-					type="tel" id="officePhone" th:field="${customerForm.officePhone}"
-					value="01 99 15 32 76" />
-			</div>
+                <div>
+                    <div class="form-group">
+                        <label for="telephone_fixe" id="label-telephone_fixe" class="form-label">Téléphone fixe</label>
+                        <input type="tel" id="officePhone" th:field="*{officePhone}" value="01 99 15 32 76" />
+                    </div>
+                    <div th:if="${#fields.hasErrors('officePhone')}" th:errors="*{officePhone}" class="error"></div>
+                </div>
 
-			<div class="form-group">
-				<label for="telephone_mobile" id="label-telephone_mobile"
-					class="form-label">Téléphone mobile</label> <input
-					type="tel" id="mobilePhone" th:field="${customerForm.mobilePhone}"
-					value="07 87 88 52 00" />
-			</div>
-		<div class="form-group">
-			<label for="etat" id="etat" class="form-label">Indicateur
-				de l’état</label> <select id="etat"
-				th:field="${customerForm.customerStatus}"
-				aria-label="Indicateur de l’état">
-				<option value="">Choisir un état</option>
-				<option th:each="status : ${customerStatus}" th:value="${status}"
-					th:text="${status}"
-					th:selected="${status} == ${customerForm.customerStatus}">
-				</option>
-			</select>
-		</div>
+                <div>
+                    <div class="form-group">
+                        <label for="telephone_mobile" id="label-telephone_mobile" class="form-label">Téléphone mobile</label>
+                        <input type="tel" id="mobilePhone" th:field="*{mobilePhone}" value="07 87 88 52 00" />
+                    </div>
+                    <div th:if="${#fields.hasErrors('mobilePhone')}" th:errors="*{mobilePhone}" class="error"></div>
+                </div>
 
-		<div class="form-group">
-			<label for="guarantee" id="guarantee" class="form-label">Gérer
-				la garantie</label> <select id="garantie"
-				th:field="${customerForm.guarantee}" aria-label="Gérer la garantie">
-				<option value="">Faites votre choix</option>
-				<option th:value="*{false}">Pas de garantie</option>
-				<option th:value="*{true}"
-					th:selected="${guarantee} == ${customerForm.guarantee}">Anti-Trash</option>
-			</select>
-		</div>
+                <div>
+                    <div class="form-group">
+                        <label for="etat" id="etat" class="form-label">Indicateur de l’état</label>
+                        <select id="etat" th:field="*{customerStatus}" aria-label="Indicateur de l’état">
+                            <option value="">Choisir un état</option>
+                            <option th:each="status : ${customerStatus}" th:value="${status}" th:text="${status}" th:selected="${status} == ${customerForm.customerStatus}"></option>
+                        </select>
+                    </div>
+                    <div th:if="${#fields.hasErrors('customerStatus')}" th:errors="*{customerStatus}" class="error"></div>
+                </div>
 
-		<div class="form-group">
-			<!-- <input type="hidden" th:field="${customerForm.userId}" /> -->
-			<label for="userId" id="userId" class="form-label">Associer
-				à un gestionnaire</label> <select id="userId"
-				th:field="${customerForm.users}"
-				aria-label="Associer à un gestionnaire">
-				<option value="">Choisir un gestionnaire</option>
-				<option th:each="user : ${users}" th:value="${user.id}"
-					th:text="${user.firstname + user.lastname}"
-					th:selected="${user} == ${customerForm.users}"></option>
+                <div>
+                    <div class="form-group">
+                        <label for="guarantee" id="guarantee" class="form-label">Gérer la garantie</label>
+                        <select id="garantie" th:field="*{guarantee}" aria-label="Gérer la garantie">
+                            <option value="">Faites votre choix</option>
+                            <option th:value="false">Pas de garantie</option>
+                            <option th:value="true" th:selected="${customerForm.guarantee == true}">Anti-Trash</option>
+                        </select>
+                    </div>
+                    <div th:if="${#fields.hasErrors('guarantee')}" th:errors="*{guarantee}" class="error"></div>
+                </div>
 
-			</select>
-		</div>
-		<div class="form-group">
-			<label for="commentaire" id="label-commentaire" class="form-label">Commentaire</label>
-			<textarea id="customerComment"
-				th:field="${customerForm.customerComment}" rows="2" cols="20"
-				aria-label="Commentaire">
-             </textarea>
-		</div>
-	</div>
+                <div>
+                    <div class="form-group">
+                        <label for="userId" id="userId" class="form-label">Associer à un gestionnaire</label>
+                        <select id="userId" th:field="*{users}" aria-label="Associer à un gestionnaire">
+                            <option value="">Choisir un gestionnaire</option>
+                            <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.firstname + ' ' + user.lastname}" th:selected="${user} == ${customerForm.users}"></option>
+                        </select>
+                    </div>
+                    <div th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" class="error"></div>
+                </div>
+
+                <div>
+                    <div class="form-group">
+                        <label for="commentaire" id="label-commentaire" class="form-label">Commentaire</label>
+                        <textarea id="customerComment" th:field="*{customerComment}" rows="2" cols="20" aria-label="Commentaire"></textarea>
+                    </div>
+                    <div th:if="${#fields.hasErrors('customerComment')}" th:errors="*{customerComment}" class="error"></div>
+                </div>
+            </div>
+
 		<!-- Buttons -->
 		<div class="buttons">
 			<button type="submit" id="valid">Enregistrer</button>
-			<button type="reset" id="reset">Effacer le formulaire</button>
 			<a href="/listecustomers"aria-label="lien de retour vers la liste d'utilisateurs">
 			<button aria-label="bouton de retour" type="button">Retour</button></a>
 		</div>	

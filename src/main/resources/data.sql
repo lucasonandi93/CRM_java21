@@ -22,12 +22,9 @@ VALUES  ('Pascal', 'KERWAN', 'p.kerwan@cryorbiter', '$2a$12$0ApZW/n/gtSYQFvFT.rJ
 INSERT INTO filrouge.user_action (user_id, method, action_realisee, created_at)
 VALUES 
     (1, 'Client', 'Consulté la liste des clients', CURRENT_TIMESTAMP),
-    (2, 'Devis', 'Créé un nouveau contact', CURRENT_TIMESTAMP),
-    (3, 'Commande', 'Mis à jour les détails du client', CURRENT_TIMESTAMP),
-    (1, 'User', 'Supprimé un enregistrement client', CURRENT_TIMESTAMP - INTERVAL '1 day'),
-    (6, 'User', 'Supprimé un enregistrement client', CURRENT_TIMESTAMP - INTERVAL '2 days'),
-    (7, 'User', 'Supprimé un enregistrement client', CURRENT_TIMESTAMP - INTERVAL '3 days'),
-    (4, 'User', 'Supprimé un enregistrement client', CURRENT_TIMESTAMP - INTERVAL '5 days');
+    (2, 'Devis', 'Créé un nouveau contact', CURRENT_TIMESTAMP - INTERVAL '2 days'),
+    (3, 'Commande', 'Mis à jour les détails du client', CURRENT_TIMESTAMP - INTERVAL '5 days'),
+    (1, 'User', 'Supprimé un enregistrement client', CURRENT_TIMESTAMP - INTERVAL '1 day');
 
 
 INSERT INTO filrouge.customers

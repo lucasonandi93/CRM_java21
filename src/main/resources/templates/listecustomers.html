@@ -12,6 +12,13 @@
 	<span>
         <a th:href="@{/createCustomer}"><button aria-label="bouton ajouter un client" type="button">+ Ajouter un client</button></a>
     </span>
+    
+<div th:if="${successMessage}" class="success">
+    <p th:text="${successMessage}"></p>
+</div>
+<div th:if="${errorMessage}" class="error">
+    <p th:text="${errorMessage}"></p>
+</div>
    
 	<h1>Liste des clients</h1>
 	

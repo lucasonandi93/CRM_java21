@@ -1,11 +1,12 @@
 package company.cryo.crm.config;
 
+import java.net.URLEncoder;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -13,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 
 @Configuration
@@ -78,6 +80,7 @@ public class SecurityConfig {
 			.formLogin(form -> form
 				.loginPage("/login")
 				.permitAll()
+				.failureHandler(customAuthenticationFailureHandler())
 				.defaultSuccessUrl("/")
 			)
 			//.formLogin(Customizer.withDefaults())
@@ -86,4 +89,17 @@ public class SecurityConfig {
 		return http.build();
 	}
 	
+	 @Bean
+	    public AuthenticationFailureHandler customAuthenticationFailureHandler() {
+	        return (request, response, exception) -> {
+	            String errorMessage = "Invalid username or password. Please try again.";
+	            if (exception.getMessage().equalsIgnoreCase("Bad credentials")) {
+	                errorMessage = "Invalid username or password. Please try again.";
+	            } else {
+	                errorMessage = "An unexpected error occurred: " + exception.getMessage();
+	            }
+	            response.sendRedirect("/login?error=" + URLEncoder.encode(errorMessage, "UTF-8"));
+	        };
+	
+	 	}
 }
