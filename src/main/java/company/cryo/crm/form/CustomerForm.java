@@ -48,10 +48,14 @@ public class CustomerForm {
 	private Boolean guarantee;
 
     private String customerComment;
-
-    private Users users; 
-    @NotNull
+    
+    
     private Integer userId;
+
+    @NotNull
+    private Users users;
+    
+
     
 }
 

@@ -96,7 +96,7 @@
                             <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.firstname + ' ' + user.lastname}" th:selected="${user} == ${customerForm.users}"></option>
                         </select>
                     </div>
-                    <div th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" class="error"></div>
+                    <div th:if="${#fields.hasErrors('users')}" th:errors="*{users}" class="error"></div>
                 </div>
 
                 <div>

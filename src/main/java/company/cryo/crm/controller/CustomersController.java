@@ -220,7 +220,7 @@ public class CustomersController {
                 changes.add("Guarantee: " + customerDto.getGuarantee() + " -> " + customerForm.getGuarantee());
             }
             if (!Objects.equals(customerDto.getUsers(), customerForm.getUsers())) {
-                changes.add("Users: " + customerDto.getUsers() + " -> " + customerForm.getUsers());
+                changes.add("Users: " + customerDto.getUsers().getFirstname() + " "+customerDto.getUsers().getLastname() + " -> " + customerForm.getUsers().getFirstname()+ " " + customerForm.getUsers().getLastname());
             }
 
             // Update the customer using form data directly

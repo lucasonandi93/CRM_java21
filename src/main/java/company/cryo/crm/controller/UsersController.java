@@ -108,6 +108,8 @@ public class UsersController {
             if (user == null) {
                 return "redirect:/listUsers";
             }
+            boolean userActive = user.getActive(); 
+            model.addAttribute("userActive", userActive);
             model.addAttribute("userName", user.getFirstname() + " " + user.getLastname());
             model.addAttribute("userId", userId);
             return "/warning"; 
@@ -125,10 +127,13 @@ public class UsersController {
     	        if (user == null) {
     	            return "redirect:/listUsers";
     	        }
-    	        // Mettre à jour l'utilisateur pour le désactiver
-    	        user.setActive(false); 
+    	        boolean previousStatus = user.getActive();
+    	        user.setActive(!previousStatus);
+
     	        usersRepository.save(user);
-    	        userActionService.logUserAction("User","Changement de status User N°"+userId);
+
+    	        String statusChange = previousStatus + " -> " + user.getActive();
+    	        userActionService.logUserAction("User", "Changement de status User: " + user.getFirstname() + " " + user.getLastname() + " " + statusChange);
     	        
 		} catch (Exception e) {
 			model.addAttribute("message", "Error charge UPDATE Users "+e.getMessage());
