@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import company.cryo.crm.config.MonUserDetails; // Asegúrate de importar MonUserDetails aquí
 import company.cryo.crm.model.UserAction;
@@ -43,14 +42,25 @@ public class UserActionService {
     public List<UserAction> getAllUserActions() {
         return userActionRepository.findAll();
     }
-    
+
+    public List<UserAction> findUserActionsByMethod(String method) {
+        return userActionRepository.findByMethod(method);
+    }
+
+    public List<UserAction> findUserActionsByGrant(UserGrant grant) {
+        return userActionRepository.findByGrant(grant);
+    }
+
+    public List<UserAction> findUserActionsByDateRange(Timestamp startDate, Timestamp endDate) {
+        return userActionRepository.findByDateRange(startDate, endDate);
+    }
+
     public Optional<UserAction> getUserActionById(Integer id) {
         return userActionRepository.findById(id);
     }
 
-    @Transactional(readOnly = true)
-    public List<UserAction> findUserActionsByFilters(String method) {
-        return userActionRepository.findUserActionsByFilters(method);
-    }
-
+	public List<UserAction> findUserActionsByCriteria(String method, UserGrant grant) {
+		 System.out.println("parametros en servicio: method = "+method+ " grant = "+grant);
+		return userActionRepository.findUserActionsByCriteria(method, grant);
+	}
 }

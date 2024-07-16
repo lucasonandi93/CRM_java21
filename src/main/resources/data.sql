@@ -23,7 +23,7 @@ INSERT INTO filrouge.user_action (user_id, method, action_realisee, created_at)
 VALUES 
     (1, 'Client', 'Consulté la liste des clients', CURRENT_TIMESTAMP),
     (2, 'Devis', 'Créé un nouveau contact', CURRENT_TIMESTAMP - INTERVAL '2 days'),
-    (3, 'Commande', 'Mis à jour les détails du client', CURRENT_TIMESTAMP - INTERVAL '5 days'),
+    (3, 'Order', 'Mis à jour les détails du client', CURRENT_TIMESTAMP - INTERVAL '5 days'),
     (1, 'User', 'Supprimé un enregistrement client', CURRENT_TIMESTAMP - INTERVAL '1 day');
 
 

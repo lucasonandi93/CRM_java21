@@ -16,20 +16,31 @@
             <div class="form">
                 <label for="method">Type d'action</label>
                 <select id="method" name="method">
-                    <option value="" th:selected="${method == null || method.isEmpty()}">Tous</option>
+                    <option value="" th:selected="${method == null}">Tous</option>
                     <option value="Client" th:selected="${method == 'Client'}">Client</option>
                     <option value="Devis" th:selected="${method == 'Devis'}">Devis</option>
                     <option value="Order" th:selected="${method == 'Order'}">Order</option>
                     <option value="User" th:selected="${method == 'User'}">User</option>
                 </select>
+                <label for="grant">Grant</label>
+    <select id="grant" name="grant">
+        <option value="" th:selected="${grant == null}">Tous</option>
+        <option th:each="g : ${T(company.cryo.crm.model.UserGrant).values()}"
+                th:value="${g}" th:text="${g.displayName}"
+                th:selected="${g.name() == grant?.name()}">
+        </option>
+    </select>
+				
+				<!-- Sección para el filtro de fecha -->
+				<label for="dateFilter">Date</label>
+    			<input type="date" id="dateFilter" name="dateFilter" th:value="${dateFilter != null ? dateFilter : ''}">
+    
+    
                 <button type="submit">Filtrer</button>
                 <a th:href="@{/listUserActions}"><button type="button">Réinitialiser</button></a>
             </div>  
         </form>
     </div>
-<div th:if="${grant != null}">
-    <p>Grant seleccionado: <span th:text="${grant}"></span></p>
-</div>
     
     <div class="table-container">
         <table>

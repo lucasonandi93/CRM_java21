@@ -1,9 +1,14 @@
 package company.cryo.crm.controller;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,24 +34,45 @@ public class UserActionController {
     @GetMapping("/listUserActions")
     public String listUserActions(
             @RequestParam(name = "method", required = false) String method,
+            @RequestParam(name = "grant", required = false) UserGrant grant,
+            @RequestParam(name = "dateFilter", required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFilter,
             Model model) {
-    	
-        model.addAttribute("method", method);
 
         List<UserAction> userActions;
 
-        if ((method == null || method.isEmpty())) {
-            userActions = userActionService.getAllUserActions();
-            model.addAttribute("userActions", userActions);
+        // Debugging message to check parameters received
+        System.out.println("[DEBUG] Parameters received: method=" + method + ", grant=" + grant + ", dateFilter=" + dateFilter);
+
+        // Retrieve user actions based on criteria
+        if (method != null && !method.isEmpty() || grant != null || dateFilter != null) {
+            userActions = userActionService.findUserActionsByCriteria(method, grant);
+
+            if (dateFilter != null) {
+                LocalDateTime startDate = dateFilter.atStartOfDay();
+                LocalDateTime endDate = dateFilter.atTime(LocalTime.MAX);
+
+                Timestamp startTimestamp = Timestamp.valueOf(startDate);
+                Timestamp endTimestamp = Timestamp.valueOf(endDate);
+
+                // Filter by date within the specified range
+                userActions = userActions.stream()
+                                         .filter(action -> action.getTimestamp().after(startTimestamp) && action.getTimestamp().before(endTimestamp))
+                                         .collect(Collectors.toList());
+            }
         } else {
-            userActions = userActionService.findUserActionsByFilters(method);
-            model.addAttribute("userActions", userActions);
+            // If no filters are applied, retrieve all user actions
+            userActions = userActionService.getAllUserActions();
         }
 
-        
+        // Add attributes to the model for Thymeleaf rendering
+        model.addAttribute("userActions", userActions);
+        model.addAttribute("method", method);
+        model.addAttribute("grant", grant);
+        model.addAttribute("dateFilter", dateFilter);
+
         return "listUserActions";
     }
-
     @PreAuthorize("hasAuthority('RESPONSABLE')")
     @GetMapping("/userAction/{id}")
     public String viewUserAction(@PathVariable("id") Integer id, Model model) {
