@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Liste des devis existants</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div th:replace="/inc/menu.html">menu à inclure</div>
+    <span>
+        <a th:href="@{/createEstimate}"><button aria-label="bouton créer un devis" type="button">+ Créer un devis</button></a>
+    </span>
+    <p th:if="${message}" th:text="${message}" class="message"></p>
+    <h1>Liste des devis</h1>
+    <div class="research">
+	<h3 class="filtre">Filtrer la liste</h3>
+
+
+
+        <form action="#" th:action="@{/listEstimates}" method="get">
+        <div class= "form">
+            <label for="status">Statut</label>
+            <select name="status" id="status">
+                <option value="" th:selected="${status == null}">Tous</option>
+                <option th:each="s : ${estimateStatus}"
+                        th:value="${s}"
+                        th:text="${s.displayName}"
+                        th:selected="${status == s}"></option>
+            </select>
+            <label for="label">Libellé</label>
+            <input type="text" id="label" name="label" th:value="${label}"/>
+
+            <label for="reference">Référence</label>
+            <input type="text" id="reference" name="reference" th:value="${reference}"/>
+
+            <label for="customerName">Nom Client</label>
+            <input type="text" id="customerName" name="customerName" th:value="${customerName}"/>
+
+            <button type="submit">Filtrer</button>
+            <a th:href="@{/listEstimates}"><button type="button">Réinitialiser</button></a>
+          </div>  
+        </form>
+        <table>
+            <tr>
+                <th>Référence</th>
+                <th>Libellé</th>
+                <th>Nom Client</th>
+                <th>Date</th>
+                <th>Montant HT</th>
+                <th>TVA %</th>
+                <th>Montant TTC</th>
+                <th>Statut</th>
+                <th>Actions</th>
+            </tr>
+            <tr th:each="estimate : ${estimates}">
+                <td th:text="${estimate.id}">Référence</td>
+                <td th:text="${estimate.estimateLabel}">Libellé</td>
+                <td th:text="${estimate.customer.firstname + ' ' + estimate.customer.lastname}">Nom Client</td>
+                <td th:text="${#dates.format(estimate.createdAt, 'dd/MM/yyyy')}">Date</td>
+                <td th:text="${estimate.montantHT}">Montant HT</td>
+                <td th:text="${estimate.tva}">TVA</td>
+                <td th:text="${estimate.montantTTC}">Montant TTC</td>
+                <td th:text="${estimate.estimateStatus}">Status</td>
+                <td class="action">
+                    <a th:href="@{/viewEstimate?id={id}(id=${estimate.id})}"><button aria-label="bouton d'aperçu" type="button" id="reset">Voir</button></a>
+                    <a th:href="@{/updateEstimate?id={id}(id=${estimate.id})}"><button aria-label="bouton de modification" type="button">Modifier</button></a>
+                    <form th:action="@{/deleteEstimate}" method="post">
+                        <input type="hidden" name="estimateId" th:value="${estimate.id}" />
+                        <button type="submit" id="delete">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+        </div>
+</body>
+</html>

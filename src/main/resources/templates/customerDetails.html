@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+	rel="stylesheet" />
+<link rel="stylesheet" href="/styles.css" />
+<title>Vue client</title>
+</head>
+<body>
+	<div th:replace="~{/inc/menu.html}">MENU</div>
+	<main class="infoCustomer">
+		<h2 class="form-title">Informations client</h2>
+		<div class="customerform">
+			<p>
+				<label for="prenom" id="title">Prénom:</label> <span id="prenom"
+					class="title" th:text="${customer.firstname}"></span>
+			</p>
+			<p>
+				<label for="nom" id="title">Nom:</label> <span id="nom"
+					class="title" th:text="${customer.lastname}"></span>
+			</p>
+			<p>
+				<label for="email" id="title">Email:</label> <span id="email"
+					class="title" th:text="${customer.email}"></span>
+			</p>
+			<p>
+				<label for="company" id="title">Entreprise:</label> <span id="company"
+					class="title" th:text="${customer.company}"></span>
+			</p>
+			<p>
+				<label for="officePhone" id="title">telephone professionnel:</label> <span id="officePhone"
+					class="title" th:text="${customer.officePhone}"></span>
+			</p>
+			
+			<p>
+				<label for="mobilePhone" id="title">telephone professionnel:</label> <span id="officePhone"
+					class="title" th:text="${customer.mobilePhone}"></span>
+			</p>
+			
+			<p>
+				<label for="customerStatus" id="title">statut:</label> <span id="customerStatus"
+					class="title" th:text="${customer.customerStatus}"></span>
+			</p>
+			<p>
+				<label for="guarantee" id="title">garantie:</label> <span id="guarantee"
+					class="title" th:text="${customer.guarantee}"></span>
+			</p>
+			<p>
+				<label for="customerComment" id="title">commentaires:</label> <span id="customerComment"
+					class="title" th:text="${customer.customerComment}"></span>
+			</p>
+			<p th:if ="${customer.users}">
+				<label for="users" id="title">gestionnaire:</label> <span id="users"
+					class="title" th:text="${customer.users.lastname + ' ' + customer.users.firstname}"></span>
+			</p>
+		</div>
+		<div class="buttons">
+			<a href="/listecustomers" aria-label="lien de retour vers la liste de clients">
+			<button aria-label="bouton de retour" type="button">Retour</button></a>
+			<button aria-label="bouton desactiver" type="submit" id="delete">Désactiver</button>
+		</div>
+	</main>
+</body>
+</html>
