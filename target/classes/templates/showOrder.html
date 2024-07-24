@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+	rel="stylesheet" />
+<link rel="stylesheet" href="/styles.css" />
+<title>Informations commande</title>
+</head>
+<body>
+	<div th:replace="~{/inc/menu.html}">MENU</div>
+	<main>
+    <h1 th:text="${'Informations de la commande C'+order.id}">Informations de la commande</h1>
+
+    <div id="list-infos-container">
+        <dl id="list-infos">
+         <dt>Devis</dt>
+         <dd th:text="${'D'+order.estimates.id+' - '+order.estimates.estimateLabel}">D1</dd>
+
+         <dt>Libellé</dt>
+         <dd th:text="${order.orderLabel}">Libellé</dd>
+
+         <dt>Client·e</dt>
+         <dd th:text="${order.customers.lastname+' '+order.customers.firstname}">NOM Prénom</dd>
+
+         <dt>Date de création</dt>
+         <dd th:text="${order.createdAt.toLocaleString()}">Date</dd>
+         
+         <dt>Taux journalier moyen</dt>
+         <dd th:text="${order.estimates.averageDailyRate+' €'}">0,00 €</dd>
+         
+         <dt>Nombre de jours</dt>
+         <dd th:text="${order.estimates.numberOfDays}">0</dd>
+         
+         <dt>Total HT</dt>
+         <dd th:text="${(order.estimates.numberOfDays*order.estimates.averageDailyRate)+' €'}">0,00 €</dd>
+         
+         <dt>TVA</dt>
+         <dd th:text="${order.estimates.tva+' %'}">0 %</dd>
+         
+         <dt>Total TTC</dt>
+         <dd th:text="${((order.estimates.numberOfDays*order.estimates.averageDailyRate)*(100+order.estimates.tva)/100)+' €'}">0,00 €</dd>
+         
+         <dt>Statut</dt>
+         <dd th:text="${order.orderStatus.getDisplayName()}">Statut</dd>
+         
+         <dt>Type</dt>
+         <dd th:text="${order.orderType}">Type</dd>
+         
+         <dt>Commentaire</dt>
+         <dd th:text="${order.orderComment}">Commentaire</dd>
+     </dl>   
+    </div>
+    
+    <div class="buttons">
+        <a th:href="${'/updateOrder?id='+order.id}"><button class="btn-primary" id="submit">Modifier</button></a>
+        <a href="/listOrders" aria-label="lien de retour vers la liste d'utilisateurs">
+			<button aria-label="bouton de retour" type="button">Retour</button></a>
+    </div>
+  </main>  
+</body>
+</html>

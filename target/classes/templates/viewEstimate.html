@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Modal Devis</title>
+</head>
+<body>
+	<div th:replace="~{/inc/menu.html}">MENU</div>
+<main class=main>
+    <h1>Informations du Devis </h1>
+    <div id="form-container">
+        <dl id="list-infos">
+            <dt>Libellé</dt>
+            <dd th:text="${estimate.estimateLabel}">Lorem ipsum</dd>
+            <dt>Client·e</dt>
+            <dd th:text="${estimate.customer.firstname} + ' ' + ${estimate.customer.lastname}">CERVOIS Daniel</dd>
+            <dt>Date de création</dt>
+            <dd th:text="${#dates.format(estimate.createdAt, 'dd/MM/yyyy')}">10/01/2024</dd>
+            <dt>Taux journalier moyen</dt>
+            <dd th:text="${estimate.averageDailyRate}">41,00 €</dd>
+            <dt>Nombre de jours</dt>
+            <dd th:text="${estimate.numberOfDays}">60</dd>
+            <dt>Total HT</dt>
+            <dd th:text="${estimate.getMontantHT()}">2 460,00 €</dd>
+            <dt>TVA</dt>
+            <dd th:text="${estimate.tva}">20%</dd>
+            <dt>Total TTC</dt>
+            <dd th:text="${estimate.getMontantTTC()}">2 952,00 €</dd>
+            <dt>Statut</dt>
+            <dd th:text="${estimate.estimateStatus}">En cours</dd>
+            <dt>Transféré au client</dt>
+            <dd th:text="${estimate.transfered ? 'Oui' : 'Non'}">Oui</dd>
+            <dt>Commentaire</dt>
+            <dd th:text="${estimate.estimateComment}">Lorem ipsum dolor sit amet...</dd>
+        </dl>
+    </div>
+    <div class="buttons">
+			<a href="/listEstimates" aria-label="lien de retour vers la liste d'utilisateurs">
+			<button aria-label="bouton de retour" type="button">Retour</button></a>
+		</div>
+    </main>
+</body>
+</html>
