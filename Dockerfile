@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/crm-0.0.1-SNAPSHOT.jar app.jar
 
 # Exponer el puerto en el que la aplicación se ejecutará
-EXPOSE 8080
+EXPOSE 8383
 
 # Ejecutar la aplicación
 ENTRYPOINT ["java", "-jar", "app.jar"]
