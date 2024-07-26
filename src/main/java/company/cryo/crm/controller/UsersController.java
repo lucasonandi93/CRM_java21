@@ -78,7 +78,7 @@ public class UsersController {
         model.addAttribute("nom", nom);
         model.addAttribute("grant", grant);
 
-        return "/listUsers";
+        return "listUsers";
     }
     
     @PreAuthorize("hasAuthority('RESPONSABLE')")

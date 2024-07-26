@@ -84,7 +84,7 @@ public class UserActionController {
                 return "redirect:/listUserActions";
             }
     		  model.addAttribute("userAction", userAction);
-    	       return "/viewUserAction";
+    	       return "viewUserAction";
     	       
 		} catch (Exception e) {
 			model.addAttribute("message", "ERROR: "+e.getMessage());
