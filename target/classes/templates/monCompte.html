@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon compte</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<div th:replace="~{/inc/menu.html}">MENU</div>
+	
+	<main>	
+	    <h1>Informations de compte</h1>
+	
+	
+	    <div id="list-infos-container">
+	        <dl id="list-infos">
+	         <dt>Matricule</dt>
+	         <dd th:text="${userId}">1</dd>
+	
+	         <dt>Date de création</dt>
+	         <dd th:text="${userInfos.createdAt}">Date</dd>
+	
+	         <dt>Nom</dt>
+	         <dd th:text="${userInfos.lastname}">Nom</dd>
+	
+	         <dt>Prénom</dt>
+	         <dd th:text="${userInfos.firstname}">Prénom</dd>
+	         
+	         <dt>Adresse email</dt>
+	         <dd th:text="${userInfos.email}">Mail</dd>
+	         
+	         <dt>Rôle</dt>
+	         <dd th:text="${userInfos.grant}">Visiteur</dd>
+	     </dl>   
+	    </div>
+	    
+	    <div id="btn-container">
+	        <a href="#"><button class="btn-primary">Modifier mon mot de passe</button></a>
+	    </div>
+    </main>
+    
+</body>
+</html>

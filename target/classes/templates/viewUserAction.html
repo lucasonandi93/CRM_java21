@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="/styles.css" />
+    <title>Détails de l'action utilisateur</title>
+</head>
+<body>
+	<div th:replace="~{/inc/menu.html}">MENU</div>
+	<main>
+	    <h1>Informations de l'action utilisateur</h1>
+       <div id="list-infos-container">
+        <dl id="list-infos">
+            <dt>Action N°</dt>
+            <dd th:text="${userAction.id}">ID</dd>
+            <dt>Utilisateur·rice</dt>
+            <dd th:text="${userAction.user.firstname + ' ' + userAction.user.lastname}">Utilisateur</dd>
+            <dt>Méthode</dt>
+            <dd th:text="${userAction.method}">Méthode</dd>
+            <dt>Action Réalisée</dt>
+            <dd th:text="${userAction.action}">Action Réalisée</dd>
+            <dt>Date</dt>
+            <dd th:text="${#dates.format(userAction.timestamp, 'dd/MM/yyyy HH:mm:ss')}">Date</dd>
+        </dl>
+    </div>
+        <a th:href="@{/listUserActions}" aria-label="lien de retour vers la liste des actions">
+			<button id="reset" aria-label="bouton de retour" type="button">Retour à la liste</button>
+		</a>
+    </main>
+</body>
+</html>

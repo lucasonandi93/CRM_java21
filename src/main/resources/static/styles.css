@@ -8,55 +8,12 @@ html, body {
 	font-size: 1rem;
 }
 
-nav {
-	background-color: #fff;
-	overflow: hidden;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px 20px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-	border-bottom: 1px solid #191c1f;
-	margin-bottom: 20px;
-}
-
-.navbar-logout img {
-	max-height: 30px;
-}
-
-.navbar-logo img {
-	max-height: 60px;
-}
-
-.navbar-links a {
-	color: #191c1f;
-	padding: 14px 50px;
-	text-decoration: none;
-}
-
-.navbar-links a.active {
-	background-color: #004aad;
-	color: white; 
-	border-radius: 5px;
-	padding: 10px;
-}
-
-.navbar-logout button {
-	background: none;
-	border: none;
-	padding: 0 20px;
-	cursor: pointer;
-}
-
-.navbar-logout button:hover {
-	background-color: #004aad;
-}
-
 
 .table-container{
-	margin-left: auto;
-	margin-right: auto;
-	width:80%;
+  width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
 }
 main{
 	display:flex;
@@ -89,12 +46,30 @@ th {
 td {
 	color: #000000;
 }
+
+/* Alterna el color de las columnas */
+table tr:nth-child(odd) {
+    background-color: #ffffff; /* Blanco */
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Gris claro */
+}
 button {
-	background-color: #23282E;
-	color: white;
-	padding: 0.5rem 2.5rem;
-	border-radius: 5px;
-	border:none;
+    background-color: #23282E;
+    color: white;
+    padding: 0.5rem 2.5rem;
+    border-radius: 5px;
+    border: none;
+    flex: 1; /* Esto hará que el botón tome todo el espacio disponible */
+    max-width: 100%; /* Asegura que el botón no se salga del contenedor */
+    box-sizing: border-box; /* Incluye padding y border en el ancho del botón */
+	cursor: pointer;
+}
+
+button:focus, button:hover {
+    outline: none;
+    box-shadow: 0 0 3px 2px rgba(0, 0, 255, 0.5);
 }
 
 .buttons {
@@ -102,6 +77,44 @@ button {
 	gap: 30px;
 	justify-content: center;
 	padding-top: 20px;
+}
+
+  input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #004aad;
+        border-radius: 3px;
+        outline: none;
+         padding: 0px;
+    }
+
+    /* Estilo del checkbox no seleccionado */
+    input[type="checkbox"]:not(:checked) {
+        background-color: white;
+    }
+
+    /* Estilo del checkbox seleccionado */
+    input[type="checkbox"]:checked {
+        background-color: #004aad;
+        border-color: #004aad;
+    }
+
+    /* Añadir un icono de check (✔) cuando está seleccionado */
+    input[type="checkbox"]:checked::before {
+        content: "✔";
+        display: block;
+        color: white;
+        text-align: center;
+        font-size: 16px;
+       
+    }
+    
+.button-add{
+	margin-right: auto;
+    padding: 10px;
 }
 
 #valid {
@@ -116,7 +129,7 @@ button {
 	border: solid 1px #e9e2e2;
 }
 #delete {
-	background-color:#B81414;
+	background-color:#b81414;
 	color: white;
 }
 
@@ -160,9 +173,7 @@ caption {
 }
 
 input, select, textarea {
-	width: 100%;
 	padding: 12px;
-	margin-top: 0.5rem;
 	border-radius: 5px;
 	border: solid 1px #191c1f;
 }
@@ -208,6 +219,8 @@ input, select, textarea {
 	align-items: center;
 	margin: 0 auto;
 	padding-top: 50px;
+	max-width: 950px;
+	width: 100%;
 }
 
 #cryologo {
@@ -231,15 +244,19 @@ text-align: center;
 }
 .form {
 	display:flex;
-	align-items: baseline;
+	align-items: center;
 	gap: 30px; 
 	padding-bottom: 30px;
-	font-size: 14px
+	font-size: 14px;
+	flex-wrap: wrap; /* Permite que los elementos se muevan a la siguiente línea si no hay suficiente espacio */
+    width: 100%; /* Asegura que el formulario ocupe todo el ancho del contenedor */
+    box-sizing: border-box;
+	
 }
 .filtre {
-	margin-left: 30px;
 	color: #004aad;
 	font-weight: 300;
+	padding: 10px 0 10px 0;
 }
 .customer-container{
 	margin-left: auto;
@@ -250,11 +267,11 @@ text-align: center;
 	display: flex;
 	justify-content: center;
 	gap: 10px;
+	width:auto;
 }
 
 a {
 	color: #004aad;
-	margin-left: 15px;
 }
 a:hover{
 color: #191c1f;	
@@ -274,9 +291,7 @@ color: #191c1f;
 	margin-top: 60px;
 }
 
-#label {
-margin-right: 8px;	
-}
+ 
 
 /*style pour viewEstimate*/
 
@@ -315,3 +330,74 @@ margin-right: 8px;
 .descriptionConnexion{
 	width: 80%;
 }
+/* ----------------------------------------------@media (max-width: 768px)------------------------------------ */
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        display: none;
+    }
+
+    tr {
+        margin-bottom: 15px;
+    }
+
+    td {
+        text-align: right;
+        position: relative;
+    }
+
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+        color: #004AAD;
+    }
+
+
+button{
+	width: 100%;
+	padding: 10px;
+	width: 100px;
+}
+
+#reset {
+    background-color: #e9e2e2;
+    color: #191c1f;
+    border: solid 1px #e9e2e2;
+}
+
+#delete {
+    background-color: #b81414;
+    color: white;
+}
+
+.form {
+        flex-direction: column; /* Cambia la dirección de los elementos en pantallas pequeñas */
+        gap: 15px; /* Reduce el espacio entre elementos */
+        align-items: stretch; /* Hace que los elementos ocupen todo el ancho disponible */
+    }
+
+    .form label,
+    .form select,
+    .form button {
+        width: 100%; /* Asegura que todos los elementos ocupen el 100% del ancho disponible */
+        flex-basis: auto; /* Resetea la base flexible en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 500px) {
+.action{
+	flex-direction: column;
+}
+td{
+	text-align: center;
+}
+	
+	}

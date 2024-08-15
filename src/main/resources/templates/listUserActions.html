@@ -7,6 +7,8 @@
 </head>
 <body>
     <div th:replace="~{/inc/menu.html}">MENU</div>
+    
+    <div class="container">
 
     <h1>Historique des actions des utilisateur·rices</h1>
     
@@ -44,6 +46,7 @@
     
     <div class="table-container">
         <table>
+        <thead>
             <tr>
                 <th>ID</th>
                 <th>Utilisateur</th>
@@ -53,18 +56,24 @@
                 <th>Date</th>
                 <th>Actions</th>
             </tr>
+            </thead>
+            <tbody>
             <tr th:each="action : ${userActions}">
-                <td th:text="${action.id}">ID</td>
-                <td th:text="${action.user.firstname + ' ' + action.user.lastname}">Utilisateur</td>
-                <td th:text="${action.user.grantName}">Grant</td>
-                <td th:text="${action.method}">Type d'action</td>
-                <td th:text="${action.action}">Description</td>
-                <td th:text="${#dates.format(action.timestamp, 'dd/MM/yyyy')}">Timestamp</td>
-                <td>
+                <td data-label="ID" th:text="${action.id}">ID</td>
+                <td data-label="Utilisateur" th:text="${action.user.firstname + ' ' + action.user.lastname}">Utilisateur</td>
+                <td data-label="Grant" th:text="${action.user.grantName}">Grant</td>
+                <td data-label="Type d'action" th:text="${action.method}">Type d'action</td>
+                <td data-label="Description" th:text="${action.action}">Description</td>
+                <td data-label="Date" th:text="${#dates.format(action.timestamp, 'dd/MM/yyyy')}">Timestamp</td>
+                <td data-label="Actions">
+                <div class="action">
                     <a th:href="@{/userAction/{id}(id=${action.id})}"><button aria-label="bouton d'aperçu" type="button" id="reset">Voir les détails</button></a>
+                </div>
                 </td>
             </tr>
+            </tbody>
         </table>
+    </div>
     </div>
 </body>
 </html>

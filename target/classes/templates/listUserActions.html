@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des actions utilisateur</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div th:replace="~{/inc/menu.html}">MENU</div>
+    
+    <div class="container">
+
+    <h1>Historique des actions des utilisateur·rices</h1>
+    
+    <div class="research">
+        <h3 class="filtre">Filtrer la liste</h3>
+        <form action="#" th:action="@{/listUserActions}" method="get">
+            <div class="form">
+                <label for="method">Type d'action</label>
+                <select id="method" name="method">
+                    <option value="" th:selected="${method == null}">Tous</option>
+                    <option value="Client" th:selected="${method == 'Client'}">Client</option>
+                    <option value="Devis" th:selected="${method == 'Devis'}">Devis</option>
+                    <option value="Order" th:selected="${method == 'Order'}">Order</option>
+                    <option value="User" th:selected="${method == 'User'}">User</option>
+                </select>
+                <label for="grant">Grant</label>
+    <select id="grant" name="grant">
+        <option value="" th:selected="${grant == null}">Tous</option>
+        <option th:each="g : ${T(company.cryo.crm.model.UserGrant).values()}"
+                th:value="${g}" th:text="${g.displayName}"
+                th:selected="${g.name() == grant?.name()}">
+        </option>
+    </select>
+				
+				<!-- Sección para el filtro de fecha -->
+				<label for="dateFilter">Date</label>
+    			<input type="date" id="dateFilter" name="dateFilter" th:value="${dateFilter != null ? dateFilter : ''}">
+    
+    
+                <button type="submit">Filtrer</button>
+                <a th:href="@{/listUserActions}"><button type="button">Réinitialiser</button></a>
+            </div>  
+        </form>
+    </div>
+    
+    <div class="table-container">
+        <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Utilisateur</th>
+                <th>Grant</th>
+                <th>Type d'action</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="action : ${userActions}">
+                <td data-label="ID" th:text="${action.id}">ID</td>
+                <td data-label="Utilisateur" th:text="${action.user.firstname + ' ' + action.user.lastname}">Utilisateur</td>
+                <td data-label="Grant" th:text="${action.user.grantName}">Grant</td>
+                <td data-label="Type d'action" th:text="${action.method}">Type d'action</td>
+                <td data-label="Description" th:text="${action.action}">Description</td>
+                <td data-label="Date" th:text="${#dates.format(action.timestamp, 'dd/MM/yyyy')}">Timestamp</td>
+                <td data-label="Actions">
+                <div class="action">
+                    <a th:href="@{/userAction/{id}(id=${action.id})}"><button aria-label="bouton d'aperçu" type="button" id="reset">Voir les détails</button></a>
+                </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</body>
+</html>

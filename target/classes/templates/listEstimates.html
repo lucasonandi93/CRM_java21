@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Liste des devis existants</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div th:replace="/inc/menu.html">menu à inclure</div>
+    <div class="container">
+    <div class="button-add">
+        <a th:href="@{/createEstimate}"><button aria-label="bouton créer un devis" type="button">+ Créer un devis</button></a>
+    </div>
+    
+    <p th:if="${message}" th:text="${message}" class="message"></p>
+    
+    <h1>Liste des devis</h1>
+    
+    <div class="research">
+	<h3 class="filtre">Filtrer la liste</h3>
+
+        <form action="#" th:action="@{/listEstimates}" method="get">
+        <div class= "form">
+            <label for="status">Statut</label>
+            <select name="status" id="status">
+                <option value="" th:selected="${status == null}">Tous</option>
+                <option th:each="s : ${estimateStatus}"
+                        th:value="${s}"
+                        th:text="${s.displayName}"
+                        th:selected="${status == s}"></option>
+            </select>
+            <label for="label">Libellé</label>
+            <input type="text" id="label" name="label" th:value="${label}"/>
+
+            <label for="reference">Référence</label>
+            <input type="text" id="reference" name="reference" th:value="${reference}"/>
+
+            <label for="customerName">Nom Client</label>
+            <input type="text" id="customerName" name="customerName" th:value="${customerName}"/>
+
+            <button type="submit">Filtrer</button>
+            <a th:href="@{/listEstimates}"><button type="button">Réinitialiser</button></a>
+          </div>  
+        </form>
+        </div>
+        <div class="table-container">
+        <table>
+        <thead>
+            <tr>
+                <th scope="col">Référence</th>
+                <th scope="col">Libellé</th>
+                <th scope="col">Nom Client</th>
+                <th scope="col">Date</th>
+                <th scope="col">Montant HT</th>
+                <th scope="col">TVA %</th>
+                <th scope="col">Montant TTC</th>
+                <th scope="col">Statut</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="estimate : ${estimates}">
+                <td data-label="Référence" th:text="${estimate.id}">Référence</td>
+                <td data-label="Libellé" th:text="${estimate.estimateLabel}">Libellé</td>
+                <td data-label="Nom Client" th:text="${estimate.customer.firstname + ' ' + estimate.customer.lastname}">Nom Client</td>
+                <td data-label="Date" th:text="${#dates.format(estimate.createdAt, 'dd/MM/yyyy')}">Date</td>
+                <td data-label="Montant" th:text="${estimate.montantHT}">Montant HT</td>
+                <td data-label="TVA" th:text="${estimate.tva}">TVA</td>
+                <td data-label="Montant" th:text="${estimate.montantTTC}">Montant TTC</td>
+                <td data-label="Statut" th:text="${estimate.estimateStatus}">Status</td>
+                <td data-label="Actions" class="action">
+                    <a th:href="@{/viewEstimate?id={id}(id=${estimate.id})}"><button aria-label="bouton d'aperçu" type="button" id="reset">Voir</button></a>
+                    <a th:href="@{/updateEstimate?id={id}(id=${estimate.id})}"><button aria-label="bouton de modification" type="button">Modifier</button></a>
+                    <form th:action="@{/deleteEstimate}" method="post">
+                        <input type="hidden" name="estimateId" th:value="${estimate.id}" />
+                        <button type="submit" id="delete">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+        </div>
+</body>
+</html>

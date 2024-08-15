@@ -19,26 +19,42 @@
 				alt="Logo de l'entreprise" />
 			</a>
 		</div>
-
-		<div class="navbar-links">
-			<a sec:authorize="hasAuthority('SERVICE_CLIENT')"
-				href="/listecustomers">Clients</a> <a
+		<ul id="menuList">
+			<li><a sec:authorize="hasAuthority('SERVICE_CLIENT')"
+				href="/listecustomers">Clients</a></li>
+				<li><a
 				sec:authorize="hasAuthority('GESTIONNAIRE_DES_VENTES')"
-				href="/listEstimates">Devis</a> <a
+				href="/listEstimates">Devis</a> </li>
+				<li><a
 				sec:authorize="hasAuthority('GESTIONNAIRE_DES_VENTES')"
-				href="/listOrders">Commandes</a> <a
+				href="/listOrders">Commandes</a> </li>
+				<li><a
 				sec:authorize="hasAuthority('RESPONSABLE')" href="/listUsers">Utilisateurs</a>
-			<a sec:authorize="hasAuthority('RESPONSABLE')"
-				href="/listUserActions">Historique</a> <a href="monCompte">Mon
-				Compte</a>
-		</div>
+			<li><a sec:authorize="hasAuthority('RESPONSABLE')"
+				href="/listUserActions">Historique</a> </li>
+				<li><a href="monCompte">Mon
+				Compte</a></li>
+			</ul>
+			<div class="menu-icon">
+			<i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
+			</div>
 		<div class="navbar-logout">
 			<a href="/logout">
-				<button aria-label="Se déconnecter">
 					<img src="/assets/image/puissance.png" alt="Icône de déconnexion" />
-				</button>
 			</a>
 		</div>
 	</nav>
+	<script>
+		let menuList = document.getElementById('menuList');
+		menuList.style.maxHeight = "0px";
+		function toggleMenu(){
+			if(menuList.style.maxHeight == "0px"){
+				menuList.style.maxHeight = "300px";
+			} else {
+				menuList.style.maxHeight = "0px";
+			}
+		}
+	</script>
+	<script src="https://kit.fontawesome.com/f8e1a90484.js" crossorigin="anonymous"></script>
 </body>
 </html>

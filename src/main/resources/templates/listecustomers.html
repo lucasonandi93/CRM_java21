@@ -9,9 +9,10 @@
 </head>
 <body>
 	<div th:replace="~{/inc/menu.html}">MENU</div>
-	<span>
+	<div class="container">
+	<div class="button-add">
         <a th:href="@{/createCustomer}"><button aria-label="bouton ajouter un client" type="button">+ Ajouter un client</button></a>
-    </span>
+    </div>
     
 <div th:if="${successMessage}" class="success">
     <p th:text="${successMessage}"></p>
@@ -41,7 +42,8 @@
         </div>
     </form>
     </div>
-<div class="customer-container">
+    
+<div class="table-container">
 <table aria-label="Tableau des clients">
     <thead>
     <tr>
@@ -55,22 +57,26 @@
     </thead>
     <tbody>
     <tr th:each="customer : ${customersList}">
-        <td th:text="${customer.company}">company</td>
-        <td th:text="${customer.lastname}">lastname</td>
-        <td th:text="${customer.firstname}">firstname</td>
-        <td th:text="${customer.mobilePhone}">mobilePhone</td>
-       <td th:text="${customer.customerStatus}">customerStatus</td>
-        <td class="action"><a th:href="@{/customerDetails/{customerId}(customerId=${customer.id})}"><button th:aria-label="${'Voir les détails du client' + customer.lastname + ' ' + customer.firstname + ' de l entreprise ' + customer.company }" id="reset">Voir</button></a>
+        <td data-label="Entreprise" th:text="${customer.company}">company</td>
+        <td data-label="Nom" th:text="${customer.lastname}">lastname</td>
+        <td data-label="Prénom" th:text="${customer.firstname}">firstname</td>
+        <td data-label="Téléphone" th:text="${customer.mobilePhone}">mobilePhone</td>
+       <td data-label="Statut" th:text="${customer.customerStatus}">customerStatus</td>
+        <td data-label="Action">
+        <div class="action">
+        <a th:href="@{/customerDetails/{customerId}(customerId=${customer.id})}"><button th:aria-label="${'Voir les détails du client' + customer.lastname + ' ' + customer.firstname + ' de l entreprise ' + customer.company }" id="reset">Voir</button></a>
             <a class="submitButton" th:href="@{/updateCustomer(customerId=${customer.id})}" th:aria-label="${'Modifier les détails du client' + customer.lastname + ' ' + customer.firstname + ' de l entreprise ' + customer.company } "><button aria-label="bouton de modification" type="button" id="submit">Modifier</button></a>
             <form th:action="@{/deleteCustomer}" method="POST">
             <input type="hidden" th:value="${customer.id}" name="customerId">
 <!--             <a th:href="@{/deleteCustomer(customerId=${customer.id})}" th:aria-label="${'Supprimer le client' + customer.lastname + ' ' + customer.firstname + ' de l entreprise ' + customer.company } "></a>
  -->            <button id="delete" type="submit">Supprimer</button> 
             </form>
+            </div>
         </td>
     </tr>
     </tbody>
 </table>
+</div>
 </div>
 </body>
 

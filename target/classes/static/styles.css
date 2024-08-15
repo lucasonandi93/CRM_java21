@@ -1,0 +1,403 @@
+/* Styles pour la barre de navigation */
+html, body {
+	margin: 0;
+	padding: 0;
+	background-color: #ebebeb;
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	font-size: 1rem;
+}
+
+
+.table-container{
+  width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+main{
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+.usersTab {
+	margin: 0 auto;
+}
+
+th, td {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+
+th {
+	background-color: #f2f2f2;
+	color: #004AAD;
+	text-align: center;
+}
+
+td {
+	color: #000000;
+}
+
+/* Alterna el color de las columnas */
+table tr:nth-child(odd) {
+    background-color: #ffffff; /* Blanco */
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Gris claro */
+}
+button {
+    background-color: #23282E;
+    color: white;
+    padding: 0.5rem 2.5rem;
+    border-radius: 5px;
+    border: none;
+    flex: 1; /* Esto hará que el botón tome todo el espacio disponible */
+    max-width: 100%; /* Asegura que el botón no se salga del contenedor */
+    box-sizing: border-box; /* Incluye padding y border en el ancho del botón */
+	cursor: pointer;
+}
+
+button:focus, button:hover {
+    outline: none;
+    box-shadow: 0 0 3px 2px rgba(0, 0, 255, 0.5);
+}
+
+.buttons {
+	display: flex;
+	gap: 30px;
+	justify-content: center;
+	padding-top: 20px;
+}
+
+  input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #004aad;
+        border-radius: 3px;
+        outline: none;
+         padding: 0px;
+    }
+
+    /* Estilo del checkbox no seleccionado */
+    input[type="checkbox"]:not(:checked) {
+        background-color: white;
+    }
+
+    /* Estilo del checkbox seleccionado */
+    input[type="checkbox"]:checked {
+        background-color: #004aad;
+        border-color: #004aad;
+    }
+
+    /* Añadir un icono de check (✔) cuando está seleccionado */
+    input[type="checkbox"]:checked::before {
+        content: "✔";
+        display: block;
+        color: white;
+        text-align: center;
+        font-size: 16px;
+       
+    }
+    
+.button-add{
+	margin-right: auto;
+    padding: 10px;
+}
+
+#valid {
+	background-color: #23282e;
+	color: white;
+	border: solid 1px #23282e;
+}
+
+#reset {
+	background-color: #e9e2e2;
+	color: #191c1f;
+	border: solid 1px #e9e2e2;
+}
+#delete {
+	background-color:#b81414;
+	color: white;
+}
+
+
+/* Ensure high contrast for readability */
+button:focus, button:hover {
+	outline: none;
+	box-shadow: 0 0 3px 2px rgba(0, 0, 255, 0.5);
+}
+
+caption {
+	text-align: center;
+	padding: 20px;
+	color: #004aad;
+	font-weight: 500;
+}
+.infoCustomer {
+	margin-top: 100px;
+}
+
+.form-title {
+	text-align: center;
+	padding: 20px;
+	color: #004aad;
+	margin-top: 50px;
+}
+
+.form-group {
+	margin-bottom: 1rem;
+	display: flex;
+	width: 500px;
+	align-items: center;
+}
+
+.form-label {
+	color: #004aad;
+	font-size: 1rem;
+	display: block;
+	margin-bottom: 0.5rem;
+	width: 50%;
+}
+
+input, select, textarea {
+	padding: 12px;
+	border-radius: 5px;
+	border: solid 1px #191c1f;
+}
+
+.required {
+	color: #b81414;
+}
+
+.checkbox {
+	margin-right: 250px
+}
+
+
+#title {
+	color: #004aad;
+	padding: 10px;
+	font-weight: 500;
+}
+.userform {
+	padding-bottom: 40px;
+}
+.infoUser {
+	margin-top: 100px;
+}
+
+/*style pour warning.html*/
+
+.warning-title {
+	text-align: center;
+	padding: 20px;
+	color: #b81414;
+}
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/*style pour home.html*/
+.container {
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
+	padding-top: 50px;
+	max-width: 950px;
+	width: 100%;
+}
+
+#cryologo {
+	border-radius: 50%;
+	width: 300px;
+}
+h1 {
+color: #004aad;	
+text-align: center;
+}
+.home-title {
+	color: #004aad;
+}
+
+/*style pour listecustomer*/
+
+.research {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.form {
+	display:flex;
+	align-items: center;
+	gap: 30px; 
+	padding-bottom: 30px;
+	font-size: 14px;
+	flex-wrap: wrap; /* Permite que los elementos se muevan a la siguiente línea si no hay suficiente espacio */
+    width: 100%; /* Asegura que el formulario ocupe todo el ancho del contenedor */
+    box-sizing: border-box;
+	
+}
+.filtre {
+	color: #004aad;
+	font-weight: 300;
+	padding: 10px 0 10px 0;
+}
+.customer-container{
+	margin-left: auto;
+	margin-right: auto;
+	width:80%;
+}
+.action {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	width:auto;
+}
+
+a {
+	color: #004aad;
+}
+a:hover{
+color: #191c1f;	
+}
+
+/*style pour createcustomer*/
+.formContainer {
+	display:grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 20px;
+}
+
+/*style pour createEstimate*/
+.form-container{
+	display:flex;
+	justify-content: center;
+	margin-top: 60px;
+}
+
+ 
+
+/*style pour viewEstimate*/
+
+#list-infos{
+	display:grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+
+    #list-infos dt {
+        font-weight: bold;
+        width: 150px; 
+        color: #004aad;
+    }
+
+    
+    #list-infos dt + dd {
+        margin-left: 0; 
+    }
+
+.main {
+	margin-top: 200px
+}
+.welcomeDescription{
+	width: 80%;
+	margin: 0 auto;
+}
+
+.error{
+	color:red;
+}
+.success{
+	color:green;
+}
+
+.descriptionConnexion{
+	width: 80%;
+}
+/* ----------------------------------------------@media (max-width: 768px)------------------------------------ */
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        display: none;
+    }
+
+    tr {
+        margin-bottom: 15px;
+    }
+
+    td {
+        text-align: right;
+        position: relative;
+    }
+
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+        color: #004AAD;
+    }
+
+
+button{
+	width: 100%;
+	padding: 10px;
+	width: 100px;
+}
+
+#reset {
+    background-color: #e9e2e2;
+    color: #191c1f;
+    border: solid 1px #e9e2e2;
+}
+
+#delete {
+    background-color: #b81414;
+    color: white;
+}
+
+.form {
+        flex-direction: column; /* Cambia la dirección de los elementos en pantallas pequeñas */
+        gap: 15px; /* Reduce el espacio entre elementos */
+        align-items: stretch; /* Hace que los elementos ocupen todo el ancho disponible */
+    }
+
+    .form label,
+    .form select,
+    .form button {
+        width: 100%; /* Asegura que todos los elementos ocupen el 100% del ancho disponible */
+        flex-basis: auto; /* Resetea la base flexible en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 500px) {
+.action{
+	flex-direction: column;
+}
+td{
+	text-align: center;
+}
+	
+	}

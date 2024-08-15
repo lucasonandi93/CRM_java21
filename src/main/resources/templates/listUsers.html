@@ -9,11 +9,12 @@
 </head>
 <body>
     <div th:replace="~{/inc/menu.html}">MENU</div>
-    <span>
+    <div class="container">
+    <div class="button-add">
         <a th:href="@{/createUser}">
             <button aria-label="bouton ajouter un utilisateur" type="button">+ Ajouter un utilisateur</button>
         </a>
-    </span>
+    </div>
     <h1>Liste des utilisateurs</h1>
     <div class="research">
         <h3 class="filtre">Filtrer la liste</h3>
@@ -37,22 +38,23 @@
         <table aria-label="Tableau des utilisateurs">
             <thead>
                 <tr>
-                    <th>Prénom</th>
-                    <th>Nom</th>
-                    <th>Email</th>
-                    <th>Grant</th>
-                    <th>Actif</th>
-                    <th>Actions</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Grant</th>
+                    <th scope="col">Actif</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="user : ${usersList}">
-                    <td th:text="${user.firstname}">Prénom</td>
-                    <td th:text="${user.lastname}">Nom</td>
-                    <td th:text="${user.email}">Email</td>
-                    <td th:text="${user.grantName}">Grant</td>
-                    <td><input type="checkbox" th:checked="${user.active}" disabled="disabled" /></td>
-                    <td>
+                    <td data-label="Prénom" th:text="${user.firstname}">Prénom</td>
+                    <td data-label="Nom" th:text="${user.lastname}">Nom</td>
+                    <td data-label="Email" th:text="${user.email}">Email</td>
+                    <td data-label="Grant" th:text="${user.grantName}">Grant</td>
+                    <td data-label="Actif"><input type="checkbox" th:checked="${user.active}" disabled="disabled" /></td>
+                    <td data-label="Actions">
+                    <div class="action">
                         <a th:href="@{/userDetails/{userId}(userId=${user.id})}">
                             <button aria-label="bouton aperçu utilisateur" type="button" id="reset">Voir</button>
                         </a>
@@ -65,10 +67,12 @@
                                 <span th:if="${!user.active}" th:text="'Activer'">Activer</span>
                             </button>
                         </a>
+                      </div>
                     </td>
                 </tr>
             </tbody>
         </table>
+    </div>
     </div>
 </body>
 </html>

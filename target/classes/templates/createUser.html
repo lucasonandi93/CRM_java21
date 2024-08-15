@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+	rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<title>Formulaire Utilisateur</title>
+</head>
+<body>
+<div th:replace="~{/inc/menu.html}">MENU</div>
+	<main>
+	<h2 class="form-title">Créer un utilisateur</h2>
+	<form th:action="@{/createUser}" method="POST" th:object="${userForm}">
+	
+		<div class="form-container">
+			<div>
+				<div class="form-group">
+					<label for="firstname" name="firstname" class="form-label"> Prénom<span class="required">*</span></label> 
+					<input type="text" id="firstname" th:field="${userForm.firstname}" required
+						aria-required="true" />
+				</div>
+
+				<div class="form-group">
+					<label for="lastname" name="lastname" class="form-label"> Nom<span class="required">*</span></label> 
+					<input type="text" id="lastname" th:field="${userForm.lastname}" required 
+						aria-required="true" />
+				</div>
+
+				<div class="form-group">
+					<label for="email" name="email" class="form-label">Adresse email<span class="required">*</span></label> 
+					<input type="email" id="email" th:field="${userForm.email}" required
+						aria-required="true" /> 
+				</div>
+				
+				<div class="form-group">
+					<label for="userPassword" name="userPassword" class="form-label">Mot de passe<span class="required">*</span></label> 
+					<input type="password" id="userPassword" th:field="${userForm.userPassword}" required
+						aria-required="true" /> 
+				</div>
+
+				<div class="form-group">
+					<label for="grantName" name="grantName" class="form-label">Droit utilisateur</label> 
+					<select id="grantName" th:field="${userForm.grantName}"
+						aria-label="Associer les droits à l'utilisateur">
+						<option value="SERVICE_CLIENT">Service client</option>
+						<option value="GESTIONNAIRE_DES_VENTES">Gestionnaire des ventes</option>
+						<option value="RESPONSABLE">Responsable</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="active" name="active" class="form-label">Actif </label> 
+					<input type="checkbox" class="checkbox" id='active' th:field="${userForm.active}"/>
+				</div>
+
+				<!-- Buttons -->
+				<div class="buttons">
+					<button aria-label="bouton de soumission" type="submit" id="submit">Créer</button>
+					<button aria-label="bouton effacer" type="reset" id="reset">Effacer le formulaire</button>
+					<a href="/listUsers"aria-label="lien de retour vers la liste d'utilisateurs">
+					<button aria-label="bouton de retour" type="button">Retour</button></a>
+				</div>
+			</div>
+		</div>
+	</form>
+	</main>
+</body>
+</html>
