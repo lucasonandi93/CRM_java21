@@ -1,18 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" id="menu">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-	href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-	rel="stylesheet" />
-<title>Barre de Navigation</title>
-<link rel="stylesheet" href="/menu.css" />
+    <title>Menu</title>
 </head>
 <body>
+
 	<nav role="navigation" aria-label="Menu principal">
 		<div class="navbar-logo">
 			<a href="/welcome"> <img src="/assets/image/logo.png"
@@ -56,5 +48,25 @@
 		}
 	</script>
 	<script src="https://kit.fontawesome.com/f8e1a90484.js" crossorigin="anonymous"></script>
+    <div th:fragment="menu">
+        <nav role="navigation" aria-label="Main Navigation">
+            <div class="navbar-logo">
+                <a href="/welcome"><img src="/assets/image/logo.png" alt="Company Logo" /></a>
+            </div>
+            <div class="navbar-links">
+                <a sec:authorize="hasAuthority('SERVICE_CLIENT')" href="/listecustomers">Clients</a>
+                <a sec:authorize="hasAuthority('GESTIONNAIRE_DES_VENTES')" href="/listEstimates">Estimates</a>
+                <a sec:authorize="hasAuthority('GESTIONNAIRE_DES_VENTES')" href="/listOrders">Orders</a>
+                <a sec:authorize="hasAuthority('RESPONSABLE')" href="/listUsers">Users</a>
+                <a sec:authorize="hasAuthority('RESPONSABLE')" href="/listUserActions">History</a>
+                <a href="monCompte">My Account</a>
+            </div>
+            <div class="navbar-logout">
+                <a href="/logout">
+                    <button aria-label="Logout"><img src="/assets/image/puissance.png" alt="Logout Icon" /></button>
+                </a>
+            </div>
+        </nav>
+    </div>
 </body>
 </html>

@@ -10,7 +10,7 @@
 <title>Modifier un utilisateur</title>
 </head>
 <body>
-	<div th:replace="~{/inc/menu.html}">MENU</div>
+	<div th:insert="~{inc/menu :: menu}"></div>
 	<main>
 		<h2 class="form-title">Modifier un utilisateur</h2>
 		<form th:action="@{/updateUser}" method="post" th:object="${userForm}">

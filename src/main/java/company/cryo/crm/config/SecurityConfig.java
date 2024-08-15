@@ -70,7 +70,7 @@ public class SecurityConfig {
 					    //.hasAuthority("....")
 					    //.hasAnyAuthority("....", "...")
 					
-					.requestMatchers("/welcome","/login", "/styles.css", "/assets/image/logo.png", "/unauthorized").permitAll()
+					.requestMatchers("/welcome","/login","/errorPage", "/styles.css", "/assets/image/logo.png", "/unauthorized").permitAll()
 					
 					// OBLIGATOIRE
 					.anyRequest()

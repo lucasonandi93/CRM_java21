@@ -10,7 +10,11 @@
 <title>Formulaire Commande</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<div th:replace="~{/inc/menu.html}">MENU</div>
+=======
+	<div th:insert="~{inc/menu :: menu}"></div>
+>>>>>>> main
 	<main>
 		<h1 class="form-title" 
 			th:text="${#strings.equals(orderForm.id, null) ? 'Créer une nouvelle commande' : 'Modifier la commande C'+orderForm.id}">

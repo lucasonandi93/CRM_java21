@@ -8,12 +8,64 @@ html, body {
 	font-size: 1rem;
 }
 
+<<<<<<< HEAD
 
 .table-container{
   width: 100%;
     margin-left: auto;
     margin-right: auto;
     padding: 10px;
+=======
+nav {
+	background-color: #fff;
+	overflow: hidden;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+	border-bottom: 1px solid #191c1f;
+	margin-bottom: 20px;
+}
+
+.navbar-logout img {
+	max-height: 30px;
+}
+
+.navbar-logo img {
+	max-height: 60px;
+}
+
+.navbar-links a {
+	color: #191c1f;
+	padding: 14px 50px;
+	text-decoration: none;
+}
+
+.navbar-links a.active {
+	background-color: #004aad;
+	color: white; 
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.navbar-logout button {
+	background: none;
+	border: none;
+	padding: 0 20px;
+	cursor: pointer;
+}
+
+.navbar-logout button:hover {
+	background-color: #004aad;
+}
+
+
+.table-container{
+	margin-left: auto;
+	margin-right: auto;
+	width:80%;
+>>>>>>> main
 }
 main{
 	display:flex;
@@ -46,6 +98,7 @@ th {
 td {
 	color: #000000;
 }
+<<<<<<< HEAD
 
 /* Alterna el color de las columnas */
 table tr:nth-child(odd) {
@@ -70,6 +123,14 @@ button {
 button:focus, button:hover {
     outline: none;
     box-shadow: 0 0 3px 2px rgba(0, 0, 255, 0.5);
+=======
+button {
+	background-color: #23282E;
+	color: white;
+	padding: 0.5rem 2.5rem;
+	border-radius: 5px;
+	border:none;
+>>>>>>> main
 }
 
 .buttons {
@@ -79,6 +140,7 @@ button:focus, button:hover {
 	padding-top: 20px;
 }
 
+<<<<<<< HEAD
   input[type="checkbox"] {
         appearance: none;
         -webkit-appearance: none;
@@ -117,6 +179,8 @@ button:focus, button:hover {
     padding: 10px;
 }
 
+=======
+>>>>>>> main
 #valid {
 	background-color: #23282e;
 	color: white;
@@ -129,7 +193,11 @@ button:focus, button:hover {
 	border: solid 1px #e9e2e2;
 }
 #delete {
+<<<<<<< HEAD
 	background-color:#b81414;
+=======
+	background-color:#B81414;
+>>>>>>> main
 	color: white;
 }
 
@@ -173,7 +241,13 @@ caption {
 }
 
 input, select, textarea {
+<<<<<<< HEAD
 	padding: 12px;
+=======
+	width: 100%;
+	padding: 12px;
+	margin-top: 0.5rem;
+>>>>>>> main
 	border-radius: 5px;
 	border: solid 1px #191c1f;
 }
@@ -219,8 +293,11 @@ input, select, textarea {
 	align-items: center;
 	margin: 0 auto;
 	padding-top: 50px;
+<<<<<<< HEAD
 	max-width: 950px;
 	width: 100%;
+=======
+>>>>>>> main
 }
 
 #cryologo {
@@ -244,6 +321,7 @@ text-align: center;
 }
 .form {
 	display:flex;
+<<<<<<< HEAD
 	align-items: center;
 	gap: 30px; 
 	padding-bottom: 30px;
@@ -257,6 +335,17 @@ text-align: center;
 	color: #004aad;
 	font-weight: 300;
 	padding: 10px 0 10px 0;
+=======
+	align-items: baseline;
+	gap: 30px; 
+	padding-bottom: 30px;
+	font-size: 14px
+}
+.filtre {
+	margin-left: 30px;
+	color: #004aad;
+	font-weight: 300;
+>>>>>>> main
 }
 .customer-container{
 	margin-left: auto;
@@ -267,11 +356,18 @@ text-align: center;
 	display: flex;
 	justify-content: center;
 	gap: 10px;
+<<<<<<< HEAD
 	width:auto;
+=======
+>>>>>>> main
 }
 
 a {
 	color: #004aad;
+<<<<<<< HEAD
+=======
+	margin-left: 15px;
+>>>>>>> main
 }
 a:hover{
 color: #191c1f;	
@@ -291,7 +387,13 @@ color: #191c1f;
 	margin-top: 60px;
 }
 
+<<<<<<< HEAD
  
+=======
+#label {
+margin-right: 8px;	
+}
+>>>>>>> main
 
 /*style pour viewEstimate*/
 
@@ -329,6 +431,7 @@ color: #191c1f;
 
 .descriptionConnexion{
 	width: 80%;
+<<<<<<< HEAD
 }
 /* ----------------------------------------------@media (max-width: 768px)------------------------------------ */
 @media (max-width: 768px) {
@@ -401,3 +504,6 @@ td{
 }
 	
 	}
+=======
+}
+>>>>>>> main
