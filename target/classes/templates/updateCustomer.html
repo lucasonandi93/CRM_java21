@@ -10,11 +10,7 @@
 <title>Formulaire Client</title>
 </head>
 <body>
-<<<<<<< HEAD
-	<div th:replace="~{/inc/menu.html}">MENU</div>
-=======
 	<div th:insert="~{inc/menu :: menu}"></div>
->>>>>>> main
 	<h2 class="form-title">Modifier un client</h2>
 	<form action="#" method="POST" th:action="@{/updateCustomer}"
 		th:object="${customerForm}">

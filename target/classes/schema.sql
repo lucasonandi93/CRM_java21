@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 CREATE SCHEMA IF NOT EXISTS filrouge;
->>>>>>> main
 -- Drop everything to start anew 
 DROP TABLE IF EXISTS filrouge.orders cascade;
 DROP TABLE IF EXISTS filrouge.estimates cascade;
