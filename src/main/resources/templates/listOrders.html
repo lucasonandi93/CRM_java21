@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-	<div th:insert="~{inc/menu :: menu}"></div>
+	<div th:replace="~{/inc/menu.html}">MENU</div>
 	<div class="container">
 	<div class="button-add">
 	<a href="/createOrder"><button aria-label="créer une commande" type="button">+ Créer une commande</button></a>

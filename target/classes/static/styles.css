@@ -8,6 +8,35 @@ html, body {
 	font-size: 1rem;
 }
 
+#cryologo {
+	border-radius: 50%;
+	width: 300px;
+}
+
+.form_group {
+    margin-bottom: 15px;
+}
+.form_group label{
+     display: block;
+    margin-bottom: 5px;
+}
+.form_group input{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#submit {
+    background-color: #004aad;
+    color: white;
+}
+
+#cancel {
+    background-color: #ccc;
+    color: black;
+}
 
 .table-container{
   width: 100%;
@@ -15,6 +44,7 @@ html, body {
     margin-right: auto;
     padding: 10px;
 }
+
 main{
 	display:flex;
 	flex-direction: column;
@@ -223,10 +253,7 @@ input, select, textarea {
 	width: 100%;
 }
 
-#cryologo {
-	border-radius: 50%;
-	width: 300px;
-}
+
 h1 {
 color: #004aad;	
 text-align: center;
@@ -332,6 +359,15 @@ color: #191c1f;
 }
 /* ----------------------------------------------@media (max-width: 768px)------------------------------------ */
 @media (max-width: 768px) {
+	
+	.container {
+        width: 95%;
+    }
+
+    .form_login {
+        margin-top: 10px;
+    }
+    
     table, thead, tbody, th, td, tr {
         display: block;
     }
@@ -399,5 +435,13 @@ button{
 td{
 	text-align: center;
 }
+ button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .descriptionConnexion {
+        font-size: 14px;
+    }
 	
 	}

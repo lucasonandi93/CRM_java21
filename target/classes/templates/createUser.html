@@ -10,7 +10,7 @@
 <title>Formulaire Utilisateur</title>
 </head>
 <body>
-<div th:insert="~{inc/menu :: menu}"></div>
+<div th:replace="~{/inc/menu.html}">MENU</div>
 	<main>
 	<h2 class="form-title">Créer un utilisateur</h2>
 	<form th:action="@{/createUser}" method="POST" th:object="${userForm}">

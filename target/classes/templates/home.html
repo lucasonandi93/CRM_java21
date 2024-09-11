@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr">
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -12,33 +13,33 @@
         </div>
         <h1>Bienvenue sur CRYO</h1>
         <h2 class="home-title">Connexion</h2>
-         <div class="error" th:if="${param.error}">
-            <p class="error-message" th:text="${param.error}">Erreur de connexion. Veuillez réessayer.</p>
+        <div class="error">
+            <p class="error-message">Erreur de connexion. Veuillez réessayer.</p>
         </div>
-        <form action="#" method="POST">
-            <label for="username">Email :</label>
-            <input type="email" id="username" name="username" value="" required autofocus>
-
-            <label for="password">Mot de passe :</label>
-            <input type="password" id="password" name="password" value="" required>
-
-            <p class="admin-contact">En cas d'oubli de votre mot de passe, veuillez contacter l'administrateur : <a href="lucasonandi93@gmail.com">administrateur@cryo.com</a></p>
-            
-            <div class="buttons">
-                <button type="submit" id="submit">Se connecter</button>
-                <button type="button" id="delete" >Quitter</button>
-            </div>
-        </form>
+        <div class="form_login">
+            <form action="#" method="POST">
+                <div class="form_group">
+                    <label for="username">Email :</label>
+                    <input type="email" id="username" name="username" required autofocus>
+                </div>
+                <div class="form_group">
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <p class="admin-contact">En cas d'oubli de votre mot de passe, veuillez contacter l'administrateur : <a href="mailto:lucasonandi93@gmail.com">administrateur@cryo.com</a></p>
+                <div class="buttons">
+                    <button type="submit" id="submit">Se connecter</button>
+                    <button type="button" id="cancel">Quitter</button>
+                </div>
+            </form>
+        </div>
         <div class="descriptionConnexion">
-        <h3 style="color:#004aad;">Vous avez trois possibilités de connexion de test, chacune avec différents rôles et autorisations dans les fonctionnalités de l'application. Les trois ont le même mot de passe, choisissez simplement l'email correspondant: </h3>
-        <p>email: <strong>resp@test</strong>  (((Compte Admin, a accès à toutes les fonctionnalités de l'application. Il peut créer, modifier et désactiver des utilisateurs, ainsi qu'accéder aux détails des actions réalisées par chaque utilisateur dans la section "historique".)))</p>
-        <p>email: <strong>gest@test</strong>  (((Compte Gestionnaire des ventes, peut accéder aux fonctionnalités relatives aux clients, devis et commandes, mais ses autorisations sont limitées et il n'a aucun accès aux comptes des utilisateurs.
-        )))</p>
-        <p>email: <strong>serv@test</strong>  (((Compte Service Client, permet d'effectuer des actions liées à la gestion des clients, mais n'autorise aucune autre fonctionnalité.
-        ))))</p>
-        <p>Mot de passe: <strong>1234</strong></p>
+            <h3 style="color:#004aad;">Vous avez trois possibilités de connexion de test, chacune avec différents rôles et autorisations dans les fonctionnalités de l'application. Les trois ont le même mot de passe, choisissez simplement l'email correspondant: </h3>
+            <p>email: <strong>resp@test</strong> (((Compte Admin, a accès à toutes les fonctionnalités de l'application. Il peut créer, modifier et désactiver des utilisateurs, ainsi qu'accéder aux détails des actions réalisées par chaque utilisateur dans la section "historique".)))</p>
+            <p>email: <strong>gest@test</strong> (((Compte Gestionnaire des ventes, peut accéder aux fonctionnalités relatives aux clients, devis et commandes, mais ses autorisations sont limitées et il n'a aucun accès aux comptes des utilisateurs.)))</p>
+            <p>email: <strong>serv@test</strong> (((Compte Service Client, permet d'effectuer des actions liées à la gestion des clients, mais n'autorise aucune autre fonctionnalité.)))</p>
+            <p>Mot de passe: <strong>1234</strong></p>
         </div>
-    </div>  
+    </div>
 </body>
 </html>
-

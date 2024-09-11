@@ -8,7 +8,7 @@
     <title>Liste des clients</title>
 </head>
 <body>
-	<div th:insert="~{inc/menu :: menu}"></div>
+	<div th:replace="~{/inc/menu.html}">MENU</div>
 	<div class="container">
 	<div class="button-add">
         <a th:href="@{/createCustomer}"><button aria-label="bouton ajouter un client" type="button">+ Ajouter un client</button></a>

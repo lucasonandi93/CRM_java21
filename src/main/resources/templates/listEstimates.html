@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div th:insert="~{inc/menu :: menu}"></div>
+    <div th:replace="~{/inc/menu.html}">MENU</div>
     <div class="container">
     <div class="button-add">
         <a th:href="@{/createEstimate}"><button aria-label="bouton créer un devis" type="button">+ Créer un devis</button></a>
